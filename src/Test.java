@@ -1,3 +1,5 @@
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class Test {
@@ -38,13 +40,12 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testAñadirObjeto(){
+    public void testAñadirConsultarObjeto(){
         Usuario user = mundo.consultarUsuario("Marc");
-       // Objeto objeto= new ;
-        assertEquals("Marc",user.getNickname());
-        assertEquals("Marcp",user.getPassword());
-        assertEquals(2,user.getProfession());
-        assertEquals(null,mundo.consultarUsuario("Pepito"));
+        ObjetoImpl objeto= new ObjetoImpl(1,"Pocion",1);
+        mundo.añadirObjetoAUsuario(user,objeto);
+        List<Objeto> objetos=mundo.consultarObjetosDeUsuario(user);
+        assertEquals(objeto,objetos.get(0));
     }
 
     @org.junit.After
