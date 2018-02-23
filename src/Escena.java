@@ -44,4 +44,15 @@ public class Escena {
     public String[][] getDatos() {
         return Datos;
     }
+    public void Escena(){
+
+    }
+
+    public void Escena(String nombre, int x,int y, String descripcion,String[][] datos){
+        this.setNombre(nombre);
+        this.setX(x);
+        this.setY(y);
+        this.setDescripcion(descripcion);
+        this.setDatos(datos);
+    }
 }
