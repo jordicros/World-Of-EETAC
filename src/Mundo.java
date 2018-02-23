@@ -38,7 +38,7 @@ public class Mundo {
         Usuario user = null;
         while (i < usuarios.size() && !encontrado) {
             user = usuarios.get(i);
-            if (user.getNickname() == nombre) {
+            if (user.getNickname().equals(nombre)) {
                 encontrado = true;
             } else
                 i++;
@@ -48,4 +48,12 @@ public class Mundo {
         else
             return null;
     }
+
+    public void añadirObjetoAUsuario(Usuario u, Objeto o)
+    {
+        
+    }
+
+    
+
 }
