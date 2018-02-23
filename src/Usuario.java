@@ -9,7 +9,7 @@ public class Usuario {
     private int magicAttack;
     private int magicDefense;
     private String[] listaAmigos;
-    private String[] inventario;
+    private int[] inventario;
     public String getNickname(){
         return this.nickname;
     }
@@ -50,10 +50,10 @@ public class Usuario {
     public int getMagicDefense() {
         return magicDefense;
     }
-    public void setInventario(String[] inventario) {
+    public void setInventario(int[] inventario) {
         this.inventario = inventario;
     }
-    public String[] getInventario() {
+    public int[] getInventario() {
         return inventario;
     }
     public void setListaAmigos(String[] listaAmigos) {
