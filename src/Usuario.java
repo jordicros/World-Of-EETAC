@@ -66,14 +66,14 @@ public class Usuario {
     public Usuario()
     {
         this.listaAmigos = new String[50];
-        this.inventario = new String[20]; //Potser es mes rentable un altre tipus d'estructura de dades.
+        this.inventario = new int[20]; //Potser es mes rentable un altre tipus d'estructura de dades.
     }
     public Usuario(String nick, String password, int profession){
         this.nickname = nick;
         this.password = password;
         this.profession = profession;
         this.listaAmigos = new String[50];
-        this.inventario = new String[20]; //Potser es mes rentable un altre tipus d'estructura de dades.
+        this.inventario = new int[20]; //Potser es mes rentable un altre tipus d'estructura de dades.
         if(getProfession() == 1)
         {
             //Stats iniciales guerrero
