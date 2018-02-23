@@ -28,6 +28,24 @@ public class Test {
         assertEquals(false, mundo.eliminarUsuario("Maria"));
     }
 
+    @org.junit.Test
+    public void testConsultarUser(){
+        Usuario user = mundo.consultarUsuario("Marc");
+        assertEquals("Marc",user.getNickname());
+        assertEquals("Marcp",user.getPassword());
+        assertEquals(2,user.getProfession());
+        assertEquals(null,mundo.consultarUsuario("Pepito"));
+    }
+
+    @org.junit.Test
+    public void testAñadirObjeto(){
+        Usuario user = mundo.consultarUsuario("Marc");
+       // Objeto objeto= new ;
+        assertEquals("Marc",user.getNickname());
+        assertEquals("Marcp",user.getPassword());
+        assertEquals(2,user.getProfession());
+        assertEquals(null,mundo.consultarUsuario("Pepito"));
+    }
 
     @org.junit.After
     public void tearDown(){

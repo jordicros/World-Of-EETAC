@@ -1,14 +1,11 @@
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Mundo {
     private List<Usuario> usuarios;
-    private List<Objeto> objetos;
 
     public Mundo() {
         usuarios = new LinkedList<Usuario>();
-        objetos = new LinkedList<Objeto>();
     }
 
     public boolean crearUsuario(Usuario u) {
@@ -51,9 +48,21 @@ public class Mundo {
 
     public void añadirObjetoAUsuario(Usuario u, Objeto o)
     {
+        int id = usuarios.indexOf(u);
+        if(id==-1)
+            return;
+        Usuario user= usuarios.get(id);
+        user.getInventario().add(o);
         
     }
 
-    
+    public List<Objeto> consultarObjetosDeUsuario(Usuario U)
+    {
+        return U.getInventario();
+    }
+
+
+
+
 
 }

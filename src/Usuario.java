@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.List;
 
 public class Usuario {
     private String nickname;
@@ -9,11 +11,10 @@ public class Usuario {
     private int magicAttack;
     private int magicDefense;
     private String[] listaAmigos;
-    private int[] inventario;
+    private List<Objeto> inventario;
     public String getNickname(){
         return this.nickname;
     }
-
     public String getPassword(){
         return this.password;
     }
@@ -50,10 +51,10 @@ public class Usuario {
     public int getMagicDefense() {
         return magicDefense;
     }
-    public void setInventario(int[] inventario) {
+    public void setInventario(List<Objeto> inventario) {
         this.inventario = inventario;
     }
-    public int[] getInventario() {
+    public List<Objeto> getInventario() {
         return inventario;
     }
     public void setListaAmigos(String[] listaAmigos) {
@@ -66,14 +67,14 @@ public class Usuario {
     public Usuario()
     {
         this.listaAmigos = new String[50];
-        this.inventario = new int[20]; //Potser es mes rentable un altre tipus d'estructura de dades.
+        this.inventario = new LinkedList<Objeto>(); //Potser es mes rentable un altre tipus d'estructura de dades.
     }
     public Usuario(String nick, String password, int profession){
         this.nickname = nick;
         this.password = password;
         this.profession = profession;
         this.listaAmigos = new String[50];
-        this.inventario = new int[20]; //Potser es mes rentable un altre tipus d'estructura de dades.
+        this.inventario = new LinkedList<Objeto>(); //Potser es mes rentable un altre tipus d'estructura de dades.
         if(getProfession() == 1)
         {
             //Stats iniciales guerrero
