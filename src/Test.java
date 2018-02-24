@@ -42,7 +42,7 @@ public class Test {
     @org.junit.Test
     public void testAñadirConsultarObjeto(){
         Usuario user = mundo.consultarUsuario("Marc");
-        ObjetoImpl objeto= new ObjetoImpl(1,"Pocion",1);
+        ObjetoEquipable objeto= new ObjetoEquipable(1,"Salud","Pocion",2);
         mundo.añadirObjetoAUsuario(user,objeto);
         List<Objeto> objetos=mundo.consultarObjetosDeUsuario(user);
         assertEquals(objeto,objetos.get(0));

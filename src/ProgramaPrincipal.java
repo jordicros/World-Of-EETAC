@@ -53,10 +53,10 @@ public class ProgramaPrincipal {
                         System.out.println("Nombre: "+user.getNickname()+" Password: "+user.getPassword()+" Profesion: "+user.getProfession());
                     break;
                 case 4:
-                    System.out.println("Escriba el usuario, el identificador, descripcion y el tipo");
+                    System.out.println("Escriba el usuario, el identificador, el nombre, la descripcion y el tipo");
                     linea = scanner.nextLine();
                     partes = linea.split(" ");
-                    mundo.añadirObjetoAUsuario(mundo.consultarUsuario(partes[0]), new ObjetoImpl(Integer.parseInt(partes[1]),partes[2],Integer.parseInt(partes[3])));
+                    mundo.añadirObjetoAUsuario(mundo.consultarUsuario(partes[0]), new ObjetoEquipable(Integer.parseInt(partes[1]),partes[2],partes[3],Integer.parseInt(partes[4])));
                     break;
                 case 5:
                     System.out.println("Escriba el nombre del usuario");
@@ -64,7 +64,7 @@ public class ProgramaPrincipal {
                     List<Objeto> lista= mundo.consultarObjetosDeUsuario(mundo.consultarUsuario(linea));
                     for(int i=0;i<lista.size();i++) {
                         Objeto obj = lista.get(i);
-                        System.out.println("ID: "+obj.getID()+" Descripción: "+obj.getDescripcion()+" Tipo: "+obj.getTipo());
+                        System.out.println("ID: "+obj.getID()+" Nombre: "+obj.getNombre()+" Descripción: "+obj.getDescripcion()+" Tipo: "+obj.getTipo());
                     }
                     break;
             }

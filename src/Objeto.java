@@ -3,6 +3,7 @@
  */
 public interface Objeto {
     public int getID();
+    public String getNombre();
     public String getDescripcion();
     public int getTipo(); //Arma, pocion, etc
 }
