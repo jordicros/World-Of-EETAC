@@ -13,13 +13,17 @@ public class ProgramaPrincipal {
                     "2* Eliminar Usuario\n"+
                     "3* Consultar Usurio\n"+
                     "4* Añadir Objeto\n"+
-                    "5* Consultar Objetos\n"
+                    "5* Consultar Objetos\n"+
+                    "6* Consultar un Objeto específico\n"+
+                    "7* Eliminar Objeto\n"+
+                    "8* Transferir Objeto\n"
             );
             boolean res;
             Scanner scanner= new Scanner(System.in);
             String linea = scanner.nextLine();
             String[] partes;
             Usuario user;
+            String usuario;
             int op= Integer.parseInt(linea);
             switch (op) {
                 case 0: menu=false;
@@ -67,6 +71,38 @@ public class ProgramaPrincipal {
                         System.out.println("ID: "+obj.getID()+" Nombre: "+obj.getNombre()+" Descripción: "+obj.getDescripcion()+" Tipo: "+obj.getTipo());
                     }
                     break;
+                case 6:
+                    System.out.println("Escriba el nombre del usuario");
+                    linea = scanner.nextLine();
+                    usuario=linea;
+                    System.out.println("Escriba el nombre del objeto");
+                    linea = scanner.nextLine();
+                    Objeto obj= mundo.consultarObjetoDeUsuario(mundo.consultarUsuario(usuario),linea);
+                    System.out.println("ID: "+obj.getID()+" Nombre: "+obj.getNombre()+" Descripción: "+obj.getDescripcion()+" Tipo: "+obj.getTipo());
+                    break;
+                case 7:
+                    System.out.println("Escriba el nombre del usuario");
+                    linea = scanner.nextLine();
+                    usuario=linea;
+                    System.out.println("Escriba el nombre del objeto");
+                    linea = scanner.nextLine();
+                    user=mundo.consultarUsuario(usuario);
+                    res= mundo.eliminarObjetosDeUsuario(user,mundo.consultarObjetoDeUsuario(user,linea));
+                    if(res)
+                        System.out.println("Eliminado correctamente");
+                    else
+                        System.out.println("No se ha podido eliminar");
+                    break;
+                case 8:
+                    System.out.println("Escriba el nombre del usuario origen");
+                    linea = scanner.nextLine();
+                    Usuario user1=mundo.consultarUsuario(linea);
+                    System.out.println("Escriba el nombre del usuario destino");
+                    linea = scanner.nextLine();
+                    Usuario user2=mundo.consultarUsuario(linea);
+                    System.out.println("Escriba el nombre del objeto");
+                    linea = scanner.nextLine();
+                    mundo.transferirObjetoEntreUsuarios(user1,user2,mundo.consultarObjetoDeUsuario(user1,linea));
             }
         }
 

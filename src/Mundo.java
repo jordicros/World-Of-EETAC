@@ -18,8 +18,7 @@ public class Mundo {
             return false;
     }
 
-    public boolean eliminarUsuario(String nombre)
-    {
+    public boolean eliminarUsuario(String nombre) {
         Usuario user = consultarUsuario(nombre);
         if(user!=null) {
             usuarios.remove(user);
@@ -46,8 +45,7 @@ public class Mundo {
             return null;
     }
 
-    public void añadirObjetoAUsuario(Usuario u, Objeto o)
-    {
+    public void añadirObjetoAUsuario(Usuario u, Objeto o) {
         int id = usuarios.indexOf(u);
         if(id==-1)
             return;
@@ -56,12 +54,36 @@ public class Mundo {
         
     }
 
-    public List<Objeto> consultarObjetosDeUsuario(Usuario U)
-    {
+    public List<Objeto> consultarObjetosDeUsuario(Usuario U) {
         return U.getInventario();
     }
 
+    public Objeto consultarObjetoDeUsuario(Usuario u,String nombreObjeto) {
+        boolean encontrado = false;
+        int i = 0;
+        Objeto obj=null;
+        List<Objeto> objetos =u.getInventario();
+        while (i < objetos.size() && !encontrado) {
+            obj = objetos.get(i);
+            if (obj.getNombre().equals(nombreObjeto)) {
+                encontrado = true;
+            } else
+                i++;
+        }
+        if (encontrado)
+            return obj;
+        else
+            return null;
+    }
 
+    public boolean eliminarObjetosDeUsuario(Usuario u,Objeto o){
+        return u.getInventario().remove(o);
+    }
+
+    public void transferirObjetoEntreUsuarios(Usuario origen,Usuario destino,Objeto o) {
+        origen.getInventario().remove(o);
+        destino.getInventario().add(o);
+    }
 
 
 
