@@ -1,11 +1,14 @@
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Mundo {
     private List<Usuario> usuarios;
+    private List<Escena> escenas;
 
     public Mundo() {
         usuarios = new LinkedList<Usuario>();
+        escenas= new LinkedList<Escena>();
     }
 
     public boolean crearUsuario(Usuario u) {
@@ -85,6 +88,37 @@ public class Mundo {
         destino.getInventario().add(o);
     }
 
+    public int cargarEscenas(String nom) throws FileNotFoundException,IOException {
+    String ruta_abs = new File("").getAbsolutePath();
+    BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/recursos/"+nom));
+    int num = Integer.parseInt(reader.readLine());
+    String[] rutes= new String[num];
+    for(int i=0;i<num;i++) {
+        rutes[i]=reader.readLine();
+    }
+    reader.close();
+    for(int a=0;a<num;a++) {
+        Escena escena= new Escena();
+        reader = new BufferedReader(new FileReader(ruta_abs+"/src/recursos/"+rutes[a]));
+        escena.setNombre(rutes[a]);
+        escena.setAncho(Integer.parseInt(reader.readLine()));
+        escena.setAlto(Integer.parseInt(reader.readLine()));
+        escena.setDescripcion(reader.readLine());
+        Celda[][] matriz= new Celda[escena.getAlto()][escena.getAncho()];
+        for(int i=0;i<escena.getAlto();i++) {
+            String[] datos= new String[escena.getAncho()];
+            datos=reader.readLine().split(" ");
+            for (int j = 0; j < escena.getAncho();j++) {
+            matriz[i][j]=new Celda(datos[j]);
+            }
+        }
+        escena.setDatos(matriz);
+        escenas.add(escena);
+    }
+    return 0;
+    }
 
-
+    public List<Escena> consultarEscenas() {
+        return escenas;
+    }
 }

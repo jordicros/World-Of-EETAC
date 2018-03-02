@@ -1,7 +1,7 @@
 public class Escena {
     private String nombre;
-    private int X;//Ancho
-    private int Y;//Alto
+    private int ancho;//Ancho
+    private int alto;//Alto
     private String descripcion;
     private Celda[][] Datos;//Ancho x alto CELDAS
 
@@ -9,12 +9,12 @@ public class Escena {
         this.nombre = nombre;
     }
 
-    public void setX(int x) {
-        X = x;
+    public void setAncho(int x) {
+        ancho= x;
     }
 
-    public void setY(int y) {
-        Y = y;
+    public void setAlto(int y) {
+        alto = y;
     }
 
     public void setDescripcion(String descripcion) {
@@ -29,12 +29,12 @@ public class Escena {
         return nombre;
     }
 
-    public int getX() {
-        return X;
+    public int getAncho() {
+        return ancho;
     }
 
-    public int getY() {
-        return Y;
+    public int getAlto() {
+        return alto;
     }
 
     public String getDescripcion() {
@@ -50,9 +50,19 @@ public class Escena {
 
     public void Escena(String nombre, int x,int y, String descripcion,Celda[][] datos){
         this.setNombre(nombre);
-        this.setX(x);
-        this.setY(y);
+        this.setAncho(x);
+        this.setAlto(y);
         this.setDescripcion(descripcion);
         this.setDatos(datos);
+    }
+
+    public void pintar(){
+        for(int i=0;i<this.getAlto();i++) {
+            String linea ="";
+            for (int j = 0; j < this.getAncho();j++) {
+                linea=linea+" "+this.getDatos()[i][j].getInfo();
+            }
+            System.out.println(linea);
+        }
     }
 }
