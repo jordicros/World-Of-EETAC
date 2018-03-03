@@ -118,7 +118,25 @@ public class Mundo {
     return 0;
     }
 
+    public Escena obtenerEscena(String nombre){
+        boolean encontrado = false;
+        int i = 0;
+        Escena pantalla = null;
+        while (i < escenas.size() && !encontrado) {
+            pantalla = escenas.get(i);
+            if (pantalla.getNombre().equals(nombre)) {
+                encontrado = true;
+            } else
+                i++;
+        }
+        if (encontrado)
+            return pantalla;
+        else
+            return null;
+    }
+
     public List<Escena> consultarEscenas() {
         return escenas;
     }
-}
+
+    }

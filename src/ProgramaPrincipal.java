@@ -18,7 +18,8 @@ public class ProgramaPrincipal {
                     "7* Eliminar Objeto\n"+
                     "8* Transferir Objeto\n"+
                     "9* Cargar Escenas\n"+
-                    "10* Mostrar Escenas\n"
+                    "10* Mostrar todas las escenas\n"+
+                    "11* Mostrar escena\n"
             );
             boolean res;
             Scanner scanner= new Scanner(System.in);
@@ -120,6 +121,12 @@ public class ProgramaPrincipal {
                         escena.pintar();
                         System.out.println("");
                     }
+                    break;
+                case 11:
+                    System.out.println("Escriba el nombre de la escena");
+                    linea = scanner.nextLine();
+                    Escena escena = mundo.obtenerEscena(linea);
+                        escena.pintar();
                     break;
             }
         }
