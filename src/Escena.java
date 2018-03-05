@@ -3,7 +3,7 @@ public class Escena {
     private int ancho;//Ancho
     private int alto;//Alto
     private String descripcion;
-    private Celda[][] Datos;//Ancho x alto CELDAS
+    private Hierba[][] Datos;//Ancho x alto CELDAS
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -21,7 +21,7 @@ public class Escena {
         this.descripcion = descripcion;
     }
 
-    public void setDatos(Celda[][] datos) {
+    public void setDatos(Hierba[][] datos) {
         Datos = datos;
     }
 
@@ -41,14 +41,14 @@ public class Escena {
         return descripcion;
     }
 
-    public Celda[][] getDatos() {
+    public Hierba[][] getDatos() {
         return Datos;
     }
     public void Escena(){
 
     }
 
-    public void Escena(String nombre, int x,int y, String descripcion,Celda[][] datos){
+    public void Escena(String nombre, int x,int y, String descripcion,Hierba[][] datos){
         this.setNombre(nombre);
         this.setAncho(x);
         this.setAlto(y);

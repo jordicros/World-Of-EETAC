@@ -5,6 +5,7 @@ import java.util.List;
 public class Mundo {
     private List<Usuario> usuarios;
     private List<Escena> escenas;
+    private List<Objeto> objetos;
 
     public Mundo() {
         usuarios = new LinkedList<Usuario>();
@@ -104,12 +105,12 @@ public class Mundo {
         escena.setAncho(Integer.parseInt(reader.readLine()));
         escena.setAlto(Integer.parseInt(reader.readLine()));
         escena.setDescripcion(reader.readLine());
-        Celda[][] matriz= new Celda[escena.getAlto()][escena.getAncho()];
+        Hierba[][] matriz= new Hierba[escena.getAlto()][escena.getAncho()];
         for(int i=0;i<escena.getAlto();i++) {
             String[] datos= new String[escena.getAncho()];
             datos=reader.readLine().split(" ");
             for (int j = 0; j < escena.getAncho();j++) {
-            matriz[i][j]=new Celda(datos[j]);
+            matriz[i][j]=new Hierba(datos[j]);
             }
         }
         escena.setDatos(matriz);
