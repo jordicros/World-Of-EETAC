@@ -7,7 +7,7 @@ public class Test {
     private Mundo mundo;
 
     @org.junit.Before
-    public void setUp(){
+    public void setUp()throws java.io.IOException{
         mundo=new Mundo();
         Usuario u = new Usuario("Marc","Marcp",2);
         mundo.crearUsuario(u);
