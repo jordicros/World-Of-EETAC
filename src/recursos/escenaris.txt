@@ -1,3 +1,0 @@
-2
-escenari1.txt
-escenari2.txt
