@@ -3,6 +3,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProgramaPrincipal {
+    public static void pintar(Escena escena)
+    {
+        for(int i=0;i<escena.getAlto();i++) {
+            String linea ="";
+            for (int j = 0; j < escena.getAncho();j++) {
+                linea=linea+" "+escena.getDatos()[i][j].getInfo();
+            }
+            System.out.println(linea);
+        }
+    }
     public static void main(String[] args) throws IOException{
         Mundo mundo= new Mundo();
         boolean menu=true;
@@ -118,7 +128,7 @@ public class ProgramaPrincipal {
                         Escena escena = escenas.get(i);
                         System.out.println(" Nombre: "+escena.getNombre()+" Alto: "+escena.getAlto()+" Ancho: "+escena.getAncho()+" Descripción: "+escena.getDescripcion());
                         System.out.println("");
-                        escena.pintar();
+                        pintar(escena);
                         System.out.println("");
                     }
                     break;
@@ -126,7 +136,7 @@ public class ProgramaPrincipal {
                     System.out.println("Escriba el nombre de la escena");
                     linea = scanner.nextLine();
                     Escena escena = mundo.obtenerEscena(linea);
-                        escena.pintar();
+                    pintar(escena);
                     break;
             }
         }
