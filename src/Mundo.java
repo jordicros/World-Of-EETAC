@@ -7,9 +7,10 @@ public class Mundo {
     private List<Escena> escenas;
     private List<Objeto> objetos;
 
-    public Mundo() {
+    public Mundo() throws IOException {
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
+        cargarEscenas("escenaris.txt");
     }
 
     public boolean crearUsuario(Usuario u) {

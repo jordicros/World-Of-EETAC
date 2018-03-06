@@ -27,9 +27,8 @@ public class ProgramaPrincipal {
                     "6* Consultar un Objeto específico\n"+
                     "7* Eliminar Objeto\n"+
                     "8* Transferir Objeto\n"+
-                    "9* Cargar Escenas\n"+
-                    "10* Mostrar todas las escenas\n"+
-                    "11* Mostrar escena\n"
+                    "9* Mostrar todas las escenas\n"+
+                    "10* Mostrar escena\n"
             );
             boolean res;
             Scanner scanner= new Scanner(System.in);

@@ -55,14 +55,4 @@ public class Escena {
         this.setDescripcion(descripcion);
         this.setDatos(datos);
     }
-
-    public void pintar(){
-        for(int i=0;i<this.getAlto();i++) {
-            String linea ="";
-            for (int j = 0; j < this.getAncho();j++) {
-                linea=linea+" "+this.getDatos()[i][j].getInfo();
-            }
-            System.out.println(linea);
-        }
-    }
 }
