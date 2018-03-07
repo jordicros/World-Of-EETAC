@@ -10,6 +10,6 @@ public class Rio {
         this.info = i;
     }
     public String getInfo(){return this.info;}
-    public Hierba(String terra)
+    public Rio(String terra)
     {setInfo(terra);}
 }
