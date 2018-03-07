@@ -13,6 +13,10 @@ public class Mundo {
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
         cargarEscenas("escenaris.txt");
+        ObjectMapper mapper = new ObjectMapper();
+        Escena obj = this.obtenerEscena("escenari1.txt");
+        String ruta_abs = new File("").getAbsolutePath();
+        mapper.writeValue(new File(ruta_abs+"/src/main/java/recursos/file.json"), Escena.class);
 
     }
 
