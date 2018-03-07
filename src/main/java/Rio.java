@@ -1,4 +1,4 @@
-public class Rio {
+public class Rio implements Celda {
     private String info; //Variable temporal perque funcioni imprimir mapes
     public int getPisable() {
         return 0;

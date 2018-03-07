@@ -12,9 +12,9 @@ public class Mundo {
     public Mundo() throws IOException {
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
-        cargarEscenas("escenaris.txt");
+        cargarEscenas("Escenas/escenaris.txt");
         ObjectMapper mapper = new ObjectMapper();
-        Escena obj = this.obtenerEscena("escenari1.txt");
+        Escena obj = this.obtenerEscena("Escenas/escenari1.txt");
         String ruta_abs = new File("").getAbsolutePath();
         mapper.writeValue(new File(ruta_abs+"/src/main/java/recursos/file.json"), Escena.class);
 
@@ -113,12 +113,23 @@ public class Mundo {
         escena.setAncho(Integer.parseInt(reader.readLine()));
         escena.setAlto(Integer.parseInt(reader.readLine()));
         escena.setDescripcion(reader.readLine());
-        Hierba[][] matriz= new Hierba[escena.getAlto()][escena.getAncho()];
+        Celda[][] matriz= new Celda[escena.getAlto()][escena.getAncho()];
         for(int i=0;i<escena.getAlto();i++) {
             String[] datos= new String[escena.getAncho()];
             datos=reader.readLine().split(" ");
             for (int j = 0; j < escena.getAncho();j++) {
-            matriz[i][j]=new Hierba(datos[j]);
+                switch (datos[j]){
+                    case("h"):
+                        matriz[i][j]=new Hierba(datos[j]);
+                        break;
+                    case("r"):
+                        matriz[i][j]=new Rio(datos[j]);
+                        break;
+                    case("p"):
+                        matriz[i][j]=new Hierba(datos[j]);
+                        break;
+                }
+
             }
         }
         escena.setDatos(matriz);
