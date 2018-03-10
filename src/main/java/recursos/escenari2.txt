@@ -3,11 +3,11 @@
 Prueba siendo todo ceros menos un cuadrado
 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0
-0 0 C C C C C C 0 0
-0 0 C C C C C C 0 0
-0 0 C C C C C C 0 0
-0 0 C C C C C C 0 0
-0 0 C C C C C C 0 0
-0 0 C C C C C C 0 0
+0 0 - - - - - - 0 0
+0 0 - - - - - - 0 0
+0 0 - - - - - - 0 0
+0 0 - - - - - - 0 0
+0 0 - - - - - - 0 0
+0 0 - - - - - - 0 0
 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0

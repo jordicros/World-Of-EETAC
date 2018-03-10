@@ -9,15 +9,16 @@ public class Mundo {
     private List<Escena> escenas;
     private List<Objeto> objetos;
 
-    public Mundo() throws IOException {
+    public Mundo()  throws IOException{
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
-        cargarEscenas("escenaris.txt");
+        cargarEscenas("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
+    }
+    public void writeJSON(String nomEscenari, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
-        Escena obj = this.obtenerEscena("escenari1.txt");
+        Escena obj = this.obtenerEscena(nomEscenari);
         String ruta_abs = new File("").getAbsolutePath();
-        mapper.writeValue(new File(ruta_abs+"/src/main/java/recursos/file.json"), Escena.class);
-
+        mapper.writeValue(new File(ruta_abs+"/src/main/java/recursos/"+nomJSON+".json"), obj);
     }
 
     public boolean crearUsuario(Usuario u) {
@@ -113,12 +114,25 @@ public class Mundo {
         escena.setAncho(Integer.parseInt(reader.readLine()));
         escena.setAlto(Integer.parseInt(reader.readLine()));
         escena.setDescripcion(reader.readLine());
-        Hierba[][] matriz= new Hierba[escena.getAlto()][escena.getAncho()];
+        Celda[][] matriz= new Celda[escena.getAlto()][escena.getAncho()];
         for(int i=0;i<escena.getAlto();i++) {
             String[] datos= new String[escena.getAncho()];
             datos=reader.readLine().split(" ");
             for (int j = 0; j < escena.getAncho();j++) {
-            matriz[i][j]=new Hierba(datos[j]);
+                switch (datos[j]){
+                    case "0": //Hierba
+                        matriz[i][j]=new Hierba();
+                        break;
+                    case "X": //Cofre
+                        matriz[i][j]=new Cofre();
+                        break;
+                    case "J": //Porta
+                        matriz[i][j]=new Puerta();
+                        break;
+                    case "-": //Riu
+                        matriz[i][j]=new Rio();
+                        break;
+                }
             }
         }
         escena.setDatos(matriz);
