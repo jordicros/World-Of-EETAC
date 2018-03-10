@@ -16,8 +16,8 @@ public class Mundo {
     public Mundo()  throws IOException{
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
-        cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
-      // cargarEscenasJson("escenarisJ.txt");
+        //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
+        cargarEscenasJson("escenarisJ.txt");
     }
     public void writeJSON(String nomEscenari, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
