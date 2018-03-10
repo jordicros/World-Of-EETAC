@@ -1,12 +1,19 @@
-public class Rio extends Celda{
+package Celes;
+
+/**
+ * Created by jordi on 05/03/2018.
+ */
+public class Hierba extends Celda{
+
     public String getSimbolo() {
-        return "-";
+        return "0";
     }
 
     public int getPisable() {
-        return 0;
+        return 1;
     }
     public int getInteractuable() {
         return 0;
     }
+
 }

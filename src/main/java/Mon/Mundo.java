@@ -1,3 +1,7 @@
+package Mon;
+
+import Celes.*;
+import Objectes.Objeto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
@@ -13,7 +17,7 @@ public class Mundo {
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
         cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
-        cargarEscenasJson("escenarisJ.txt");
+      // cargarEscenasJson("escenarisJ.txt");
     }
     public void writeJSON(String nomEscenari, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
@@ -90,7 +94,7 @@ public class Mundo {
             return null;
     }
 
-    public boolean eliminarObjetosDeUsuario(Usuario u,Objeto o){
+    public boolean eliminarObjetosDeUsuario(Usuario u, Objeto o){
         return u.getInventario().remove(o);
     }
 
@@ -121,10 +125,10 @@ public class Mundo {
             datos=reader.readLine().split(" ");
             for (int j = 0; j < escena.getAncho();j++) {
                 switch (datos[j]){
-                    case "0": //Hierba
+                    case "0": //Celes.Hierba
                         matriz[i][j]=new Hierba();
                         break;
-                    case "X": //Cofre
+                    case "X": //Celes.Cofre
                         matriz[i][j]=new Cofre();
                         break;
                     case "J": //Porta

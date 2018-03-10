@@ -1,3 +1,7 @@
+package Mon;
+
+import Objectes.Objeto;
+
 import java.util.LinkedList;
 import java.util.List;
 

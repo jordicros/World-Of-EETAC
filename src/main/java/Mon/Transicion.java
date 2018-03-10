@@ -1,3 +1,5 @@
+package Mon;
+
 public class Transicion {
     private String escenario1;
     private int X1;

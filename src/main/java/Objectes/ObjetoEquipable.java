@@ -1,3 +1,5 @@
+package Objectes;
+
 public class ObjetoEquipable implements Objeto {
     private int id;
     private String nombre;

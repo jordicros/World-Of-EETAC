@@ -1,3 +1,6 @@
+package Celes;
+import Objectes.Objeto;
+
 import java.util.List;
 
 /**

@@ -1,3 +1,9 @@
+package mains_tests;
+
+import Objectes.Objeto;
+import Objectes.ObjetoEquipable;
+import org.junit.Assert;
+import Mon.*;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -19,25 +25,25 @@ public class Test {
     @org.junit.Test
     public void testCrearUser(){
         Usuario u = new Usuario("Maria","Mariap",1);
-        assertEquals(true, mundo.crearUsuario(u));
+        Assert.assertEquals(true, mundo.crearUsuario(u));
         u = new Usuario("Marc","Mp",3);
-        assertEquals(false, mundo.crearUsuario(u));
+        Assert.assertEquals(false, mundo.crearUsuario(u));
 
     }
 
     @org.junit.Test
     public void testBorrarUser(){
-        assertEquals(true, mundo.eliminarUsuario("Juan"));
-        assertEquals(false, mundo.eliminarUsuario("Maria"));
+        Assert.assertEquals(true, mundo.eliminarUsuario("Juan"));
+        Assert.assertEquals(false, mundo.eliminarUsuario("Maria"));
     }
 
     @org.junit.Test
     public void testConsultarUser(){
         Usuario user = mundo.consultarUsuario("Marc");
-        assertEquals("Marc",user.getNickname());
-        assertEquals("Marcp",user.getPassword());
-        assertEquals(2,user.getProfession());
-        assertEquals(null,mundo.consultarUsuario("Pepito"));
+        Assert.assertEquals("Marc",user.getNickname());
+        Assert.assertEquals("Marcp",user.getPassword());
+        Assert.assertEquals(2,user.getProfession());
+        Assert.assertEquals(null,mundo.consultarUsuario("Pepito"));
     }
 
     @org.junit.Test

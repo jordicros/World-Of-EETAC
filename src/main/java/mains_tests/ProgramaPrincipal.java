@@ -1,6 +1,12 @@
+package mains_tests;
+
+import Mon.*;
+import Objectes.Objeto;
+import Objectes.ObjetoEquipable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class ProgramaPrincipal {
     public static void pintar(Escena escena)

@@ -1,5 +1,6 @@
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+package Mon;
+
+import Celes.Celda;
 
 public class Escena {
     private String nombre;
