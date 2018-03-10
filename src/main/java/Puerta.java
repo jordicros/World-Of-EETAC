@@ -3,6 +3,10 @@
  * Quan es carrega una porta, ha de definirse la transició que vol fer. Una porta és interactuable però no trepitjable
  */
 public class Puerta extends Celda {
+    public String getSimbolo() {
+        return "J";
+    }
+
     private Transicion teleport = new Transicion();
     public void setTeleport(Transicion door){
         this.teleport = door;

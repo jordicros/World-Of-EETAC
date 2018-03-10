@@ -3,6 +3,10 @@
  */
 public class Hierba extends Celda{
 
+    public String getSimbolo() {
+        return "0";
+    }
+
     public int getPisable() {
         return 1;
     }

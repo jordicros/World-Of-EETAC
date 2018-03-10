@@ -4,6 +4,10 @@ import java.util.List;
  * Created by jordi on 05/03/2018.
  */
 public class Cofre extends Celda {
+    public String getSimbolo() {
+        return "X";
+    }
+
     private List<Objeto> contenido;
     public int getPisable() {
         return 0;

@@ -3,16 +3,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProgramaPrincipal {
-    /*public static void pintar(Escena escena)
+    public static void pintar(Escena escena)
     {
         for(int i=0;i<escena.getAlto();i++) {
             String linea ="";
             for (int j = 0; j < escena.getAncho();j++) {
-                linea=linea+" "+escena.getDatos()[i][j].getInfo();
+                linea=linea+" "+escena.getDatos()[i][j].getSimbolo();
             }
             System.out.println(linea);
         }
-    }*/
+    }
     public static void main(String[] args) throws IOException{
         Mundo mundo= new Mundo();
         boolean menu=true;

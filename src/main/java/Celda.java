@@ -14,4 +14,6 @@ public abstract class Celda {
     public abstract int getPisable();
     @JsonIgnore
     public abstract int getInteractuable();
+
+    public abstract String getSimbolo();
 }
