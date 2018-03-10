@@ -2,7 +2,7 @@
  * Created by jordi on 05/03/2018.
  * Quan es carrega una porta, ha de definirse la transició que vol fer. Una porta és interactuable però no trepitjable
  */
-public class Puerta implements Celda {
+public class Puerta extends Celda {
     private Transicion teleport = new Transicion();
     public void setTeleport(Transicion door){
         this.teleport = door;
@@ -16,6 +16,7 @@ public class Puerta implements Celda {
     public Puerta(Transicion door){
         setTeleport(door);
     }
+    public Puerta(){}
     public Transicion getTeleport() {
         return this.teleport;
     }

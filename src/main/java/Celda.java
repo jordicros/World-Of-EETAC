@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value=Puerta.class, name="puerta")
 })
 
-public interface Celda {
+public abstract class Celda {
     @JsonIgnore
-    public int getPisable();
+    public abstract int getPisable();
     @JsonIgnore
-    public int getInteractuable();
+    public abstract int getInteractuable();
 }

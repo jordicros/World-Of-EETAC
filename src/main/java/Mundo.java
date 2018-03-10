@@ -9,15 +9,16 @@ public class Mundo {
     private List<Escena> escenas;
     private List<Objeto> objetos;
 
-    public Mundo() throws IOException {
+    public Mundo()  throws IOException{
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
-        cargarEscenas("Escenas/escenaris.txt");
+        cargarEscenas("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
+    }
+    public void writeJSON(String nomEscenari, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
-        Escena obj = this.obtenerEscena("Escenas/escenari1.txt");
+        Escena obj = this.obtenerEscena(nomEscenari);
         String ruta_abs = new File("").getAbsolutePath();
-        mapper.writeValue(new File(ruta_abs+"/src/main/java/recursos/file.json"), Escena.class);
-
+        mapper.writeValue(new File(ruta_abs+"/src/main/java/recursos/"+nomJSON+".json"), obj);
     }
 
     public boolean crearUsuario(Usuario u) {
@@ -119,17 +120,19 @@ public class Mundo {
             datos=reader.readLine().split(" ");
             for (int j = 0; j < escena.getAncho();j++) {
                 switch (datos[j]){
-                    case("h"):
-                        matriz[i][j]=new Hierba(datos[j]);
+                    case "0": //Hierba
+                        matriz[i][j]=new Hierba();
                         break;
-                    case("r"):
-                        matriz[i][j]=new Rio(datos[j]);
+                    case "X": //Cofre
+                        matriz[i][j]=new Cofre();
                         break;
-                    case("p"):
-                        matriz[i][j]=new Hierba(datos[j]);
+                    case "J": //Porta
+                        matriz[i][j]=new Puerta();
+                        break;
+                    case "-": //Riu
+                        matriz[i][j]=new Rio();
                         break;
                 }
-
             }
         }
         escena.setDatos(matriz);

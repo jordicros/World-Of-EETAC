@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProgramaPrincipal {
-    public static void pintar(Escena escena)
+    /*public static void pintar(Escena escena)
     {
         for(int i=0;i<escena.getAlto();i++) {
             String linea ="";
@@ -12,7 +12,7 @@ public class ProgramaPrincipal {
             }
             System.out.println(linea);
         }
-    }
+    }*/
     public static void main(String[] args) throws IOException{
         Mundo mundo= new Mundo();
         boolean menu=true;
@@ -28,7 +28,8 @@ public class ProgramaPrincipal {
                     "7* Eliminar Objeto\n"+
                     "8* Transferir Objeto\n"+
                     "9* Mostrar todas las escenas\n"+
-                    "10* Mostrar escena\n"
+                    "10* Mostrar escena\n"+
+                    "11* Escribir JSON\n"
             );
             boolean res;
             Scanner scanner= new Scanner(System.in);
@@ -122,7 +123,7 @@ public class ProgramaPrincipal {
                         Escena escena = escenas.get(i);
                         System.out.println(" Nombre: "+escena.getNombre()+" Alto: "+escena.getAlto()+" Ancho: "+escena.getAncho()+" Descripción: "+escena.getDescripcion());
                         System.out.println("");
-                        pintar(escena);
+                        //pintar(escena);
                         System.out.println("");
                     }
                     break;
@@ -130,7 +131,11 @@ public class ProgramaPrincipal {
                     System.out.println("Escriba el nombre de la escena");
                     linea = scanner.nextLine();
                     Escena escena = mundo.obtenerEscena(linea);
-                    pintar(escena);
+                    //pintar(escena);
+                    break;
+                case 11:
+                    mundo.writeJSON("escenari1.txt", "esc1");
+                    mundo.writeJSON("escenari2.txt", "esc2");
                     break;
             }
         }
