@@ -19,7 +19,7 @@ public class Mundo {
         ObjectMapper mapper = new ObjectMapper();
         Escena obj = this.obtenerEscena(nomEscenari);
         String ruta_abs = new File("").getAbsolutePath();
-        mapper.writeValue(new File(ruta_abs+"/src/main/resources/Escenas/"+nomJSON+".json"), obj);
+        mapper.writeValue(new File(ruta_abs+"/src/main/resources/escenas/escenasJson/"+nomJSON+".json"), obj);
     }
 
     public boolean crearUsuario(Usuario u) {
@@ -101,7 +101,7 @@ public class Mundo {
 
     public int cargarEscenasTxt(String nom) throws FileNotFoundException,IOException {
     String ruta_abs = new File("").getAbsolutePath();
-    BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/Escenas/"+nom));
+    BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/escenas/escenasTxt/"+nom));
     int num = Integer.parseInt(reader.readLine());
     String[] rutes= new String[num];
     for(int i=0;i<num;i++) {
@@ -110,7 +110,7 @@ public class Mundo {
     reader.close();
     for(int a=0;a<num;a++) {
         Escena escena= new Escena();
-        reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/Escenas/"+rutes[a]));
+        reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/escenas/escenasTxt/"+rutes[a]));
         escena.setNombre(rutes[a]);
         escena.setAncho(Integer.parseInt(reader.readLine()));
         escena.setAlto(Integer.parseInt(reader.readLine()));
@@ -144,7 +144,7 @@ public class Mundo {
 
     public int cargarEscenasJson(String nom) throws FileNotFoundException,IOException {
         String ruta_abs = new File("").getAbsolutePath();
-        BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/Escenas/"+nom));
+        BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/escenas/escenasJson/"+nom));
         int num = Integer.parseInt(reader.readLine());
         String[] rutes= new String[num];
         for(int i=0;i<num;i++) {
@@ -153,7 +153,7 @@ public class Mundo {
         reader.close();
         for(int a=0;a<num;a++) {
             ObjectMapper mapper = new ObjectMapper();
-            Escena obj = mapper.readValue( new File(ruta_abs+"/src/main/resources/Escenas/"+rutes[a]),Escena.class);
+            Escena obj = mapper.readValue( new File(ruta_abs+"/src/main/resources/escenas/escenasJson/"+rutes[a]),Escena.class);
             escenas.add(obj);
         }
         return 0;
@@ -166,7 +166,7 @@ public class Mundo {
             String ruta_abs = new File("").getAbsolutePath();
             String nom = escenas.get(i).getNombre();
             nom =nom.substring(0,nom.lastIndexOf("."));
-            mapper.writeValue(new File(ruta_abs+"/src/main/resources/Escenas/"+nom+".json"),escenas.get(i));
+            mapper.writeValue(new File(ruta_abs+"/src/main/resources/escenas/escenasJson/"+nom+".json"),escenas.get(i));
         }
     }
     public Escena obtenerEscena(String nombre){
