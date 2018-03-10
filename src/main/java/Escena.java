@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 public class Escena {
     private String nombre;
     private int ancho;//Ancho

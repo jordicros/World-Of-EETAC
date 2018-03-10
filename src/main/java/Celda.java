@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
         @JsonSubTypes.Type(value=Hierba.class, name="hierba"),
         @JsonSubTypes.Type(value=Cofre.class, name="cofre"),
-        @JsonSubTypes.Type(value=Puerta.class, name="puerta")
+        @JsonSubTypes.Type(value=Puerta.class, name="puerta"),
+        @JsonSubTypes.Type(value=Rio.class, name="Rio"),
 })
 
 public abstract class Celda {
@@ -14,6 +15,6 @@ public abstract class Celda {
     public abstract int getPisable();
     @JsonIgnore
     public abstract int getInteractuable();
-
+    @JsonIgnore
     public abstract String getSimbolo();
 }
