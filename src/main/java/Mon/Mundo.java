@@ -131,7 +131,7 @@ public class Mundo {
                     case "X": //Celes.Cofre
                         matriz[i][j]=new Cofre();
                         break;
-                    case "J": //Porta
+                    case "G": //Porta
                         matriz[i][j]=new Puerta();
                         break;
                     case "-": //Riu

@@ -6,7 +6,7 @@ import Mon.*;
  */
 public class Puerta extends Celda {
     public String getSimbolo() {
-        return "J";
+        return "G";
     }
 
     private Transicion teleport = new Transicion();
