@@ -16,7 +16,7 @@ public class Mundo {
     public Mundo()  throws IOException{
         usuarios = new LinkedList<Usuario>();
         escenas= new LinkedList<Escena>();
-        //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
+        cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
         cargarEscenasJson("escenarisJ.txt");
     }
     public void writeJSON(String nomEscenari, String nomJSON) throws IOException{
@@ -131,12 +131,14 @@ public class Mundo {
                     case "X": //Celes.Cofre
                         matriz[i][j]=new Cofre();
                         break;
-                    case "J": //Porta
+                    case "G": //Porta
                         matriz[i][j]=new Puerta();
                         break;
                     case "-": //Riu
                         matriz[i][j]=new Rio();
                         break;
+                    default:
+                        matriz[i][j]=new Hierba();
                 }
             }
         }
