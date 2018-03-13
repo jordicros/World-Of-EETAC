@@ -114,10 +114,13 @@ public class Mundo {
     reader.close();
     for(int a=0;a<num;a++) {
         Escena escena= new Escena();
+        int numCofres,numPuertas;
         reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/escenas/escenasTxt/"+rutes[a]));
         escena.setNombre(rutes[a]);
         escena.setAncho(Integer.parseInt(reader.readLine()));
         escena.setAlto(Integer.parseInt(reader.readLine()));
+        numCofres=Integer.parseInt(reader.readLine());
+        numPuertas=Integer.parseInt(reader.readLine());
         escena.setDescripcion(reader.readLine());
         Celda[][] matriz= new Celda[escena.getAlto()][escena.getAncho()];
         for(int i=0;i<escena.getAlto();i++) {
