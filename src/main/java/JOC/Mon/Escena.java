@@ -1,6 +1,6 @@
-package Mon;
+package JOC.Mon;
 
-import Celes.Celda;
+import JOC.Celes.Celda;
 
 public class Escena {
     private String nombre;

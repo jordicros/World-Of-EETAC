@@ -1,6 +1,6 @@
-package Mon;
+package JOC.Mon;
 
-import Objectes.Objeto;
+import JOC.Objectes.Objeto;
 
 import java.util.LinkedList;
 import java.util.List;

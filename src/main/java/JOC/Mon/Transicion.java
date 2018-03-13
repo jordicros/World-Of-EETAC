@@ -1,4 +1,4 @@
-package Mon;
+package JOC.Mon;
 
 public class Transicion {
     private String escenario1;

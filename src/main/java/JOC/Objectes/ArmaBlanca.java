@@ -1,4 +1,4 @@
-package Objectes;
+package JOC.Objectes;
 
 public class ArmaBlanca {
 

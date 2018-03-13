@@ -1,4 +1,4 @@
-package Celes;
+package JOC.Celes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;

@@ -1,4 +1,4 @@
-package Objectes;
+package JOC.Objectes;
 
 /**
  * Created by jordi on 23/02/2018.

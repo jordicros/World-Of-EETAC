@@ -1,9 +1,9 @@
-package mains_tests;
+package JOC.mains_tests;
 
-import Objectes.Objeto;
-import Objectes.ObjetoEquipable;
+import JOC.Objectes.Objeto;
+import JOC.Objectes.ObjetoEquipable;
 import org.junit.Assert;
-import Mon.*;
+import JOC.Mon.*;
 import java.util.List;
 
 import static org.junit.Assert.*;

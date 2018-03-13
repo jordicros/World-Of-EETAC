@@ -1,5 +1,5 @@
-package Celes;
-import Mon.*;
+package JOC.Celes;
+import JOC.Mon.*;
 /**
  * Created by jordi on 05/03/2018.
  * Quan es carrega una porta, ha de definirse la transició que vol fer. Una porta és interactuable però no trepitjable

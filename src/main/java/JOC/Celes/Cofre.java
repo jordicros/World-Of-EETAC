@@ -1,5 +1,5 @@
-package Celes;
-import Objectes.Objeto;
+package JOC.Celes;
+import JOC.Objectes.Objeto;
 
 import java.util.List;
 

@@ -1,19 +1,14 @@
-package Celes;
+package JOC.Celes;
 
-/**
- * Created by jordi on 05/03/2018.
- */
-public class Hierba extends Celda{
-
+public class Rio extends Celda{
     public String getSimbolo() {
-        return "0";
+        return "-";
     }
 
     public int getPisable() {
-        return 1;
+        return 0;
     }
     public int getInteractuable() {
         return 0;
     }
-
 }

@@ -1,14 +1,31 @@
-package mains_tests;
+package JOC.mains_tests;
 
-import Mon.*;
-import Objectes.Objeto;
-import Objectes.ObjetoEquipable;
+import JOC.Mon.*;
+import JOC.Objectes.Objeto;
+import JOC.Objectes.ObjetoEquipable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.grizzly.http.server.StaticHttpHandler;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
+
+import java.net.URI;
 
 
 public class ProgramaPrincipal {
+    public static final String BASE_URI = "http://localhost:8080/myapp/";
+    public static HttpServer startServer() {
+        // create a resource config that scans for JAX-RS resources and providers
+        // in edu.upc.dsa package
+        final ResourceConfig rc = new ResourceConfig().packages("JOC");
+
+        // create and start a new instance of grizzly http server
+        // exposing the Jersey application at BASE_URI
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+    }
+
     public static void pintar(Escena escena)
     {
         for(int i=0;i<escena.getAlto();i++) {
@@ -20,6 +37,9 @@ public class ProgramaPrincipal {
         }
     }
     public static void main(String[] args) throws IOException{
+        final HttpServer server = startServer();
+        StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/");
+        server.getServerConfiguration().addHttpHandler(staticHttpHandler,"/");
         Mundo mundo= new Mundo();
         boolean menu=true;
         while(menu)
