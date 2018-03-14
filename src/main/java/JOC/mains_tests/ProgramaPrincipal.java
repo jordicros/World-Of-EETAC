@@ -162,7 +162,7 @@ public class ProgramaPrincipal {
                     pintar(escena);
                     break;
                 case 11:
-                    mundo.guardarEscenas();
+                    mundo.guardarEscenasJSON();
                     break;
             }
         }

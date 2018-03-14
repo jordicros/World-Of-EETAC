@@ -95,15 +95,36 @@ public class Mundo {
     }
 
     @GET
-    @Path("getEscenaris")
+    @Path("/getEscenaris/{id}")
     @Produces(MediaType.APPLICATION_JSON )
-    public Response enviarEscenarioJSON(){
-        return Response.status(200).entity(escenas.get(0)).build();
+    public Escena enviarEscenarioJSON(@PathParam("id") int id){
+       // return Response.status(200).entity(escenas.get(0)).build();
+        if(escenas.get(id)!=null)
+        return escenas.get(id);
+        else
+            return null;
     }
 
+    @GET
+    @Path("/getUser/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON) //NO RESPON, UNA FUNCIO SENZILLA SI QUE TIRA
+    public Usuario enviarUsuarioJSON(@PathParam("nombre") String nombre) {
+        boolean encontrado = false;
+        int i = 0;
+        Usuario user = null;
+        while (i < usuarios.size() && !encontrado) {
+            user = usuarios.get(i);
+            if (user.getNickname().equals(nombre)) {
+                encontrado = true;
+            } else
+                i++;
+        }
+        if (encontrado)
+            return user;
+        else
+            return user;
 
-
-
+    }
 
     public boolean crearUsuario(Usuario u) {
         //Primer ens asegurem que el nickname sigui unic
@@ -174,7 +195,7 @@ public class Mundo {
         origen.getInventario().remove(o);
         destino.getInventario().add(o);
     }
-    public void guardarEscenas() throws java.io.IOException {
+    public void guardarEscenasJSON() throws java.io.IOException {
         for(int i=0;i<escenas.size();i++)
         {
             ObjectMapper mapper = new ObjectMapper();
