@@ -1,5 +1,8 @@
 package JOC.Celes;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 /**
  * Created by jordi on 05/03/2018.
  */
