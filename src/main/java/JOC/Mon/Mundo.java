@@ -222,6 +222,9 @@ public class Mundo {
             return null;
     }
 
+    @GET
+    @Path("/getEscenas")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Escena> consultarEscenas() {
         return escenas;
     }
