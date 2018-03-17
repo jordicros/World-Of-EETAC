@@ -2,27 +2,30 @@ package JOC.Mon;
 
 import JOC.Celes.*;
 import JOC.Objectes.Objeto;
+import JOC.mains_tests.Dades;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 @Path("mundo")
 public class Mundo {
-    private List<Usuario> usuarios;
-    private List<Escena> escenas;
-    private List<Objeto> objetos;
+    private List<Usuario> usuarios = new ArrayList<Usuario>();
+    private List<Escena> escenas= new ArrayList<Escena>();
+    private List<Objeto> objetos= new ArrayList<Objeto>();
 
     public Mundo()  throws IOException{
-        usuarios = new LinkedList<Usuario>();
-        escenas= new LinkedList<Escena>();
+        cargarEscenasJson("escenarisJ.txt");
+        Dades.getInstance(escenas);
+        Dades singleton = Dades.getInstance(escenas);
+        escenas= singleton.getEscenas();
         //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
 
-        cargarEscenasJson("escenarisJ.txt");
+
     }
     public void writeJSON(String nomEscenari, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
@@ -107,8 +110,8 @@ public class Mundo {
 
     @GET
     @Path("/getUser/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON) //NO RESPON, UNA FUNCIO SENZILLA SI QUE TIRA
-    public Usuario enviarUsuarioJSON(@PathParam("nombre") String nombre) {
+    @Produces(MediaType.TEXT_PLAIN) //NO RESPON, UNA FUNCIO SENZILLA SI QUE TIRA
+    public int enviarUsuarioJSON(@PathParam("nombre") String nombre) {
         boolean encontrado = false;
         int i = 0;
         Usuario user = null;
@@ -120,9 +123,11 @@ public class Mundo {
                 i++;
         }
         if (encontrado)
-            return user;
+            return 1;
+            //return Response.ok(user).build();
         else
-            return user;
+            return -1;
+            //return Response.status(201).build();
 
     }
 
