@@ -1,9 +1,12 @@
 package JOC.mains_tests;
 
 import JOC.Mon.Escena;
+import JOC.Mon.Mundo;
 import JOC.Mon.Usuario;
 import JOC.Objectes.Objeto;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,29 +15,23 @@ import java.util.List;
 public class Dades {
     private static Dades ourInstance;
 
-    private List<Escena> escenas;
-    private List<Usuario> usuarios;
+    private Mundo mon;
 
 
-    public static Dades getInstance(List<Escena> esc,List<Usuario> usuarios) {
+    public static Dades getInstance() throws IOException {
         if(ourInstance==null)
         {
-            ourInstance = new Dades(esc,usuarios);
+            ourInstance = new Dades();
         return ourInstance;}
         else
             return ourInstance;
     }
 
-    private Dades(List<Escena> esc,List<Usuario> usuarios) {
-        this.escenas = esc;
-        this.usuarios=usuarios;
-
+    private Dades() throws IOException {
+            this.mon = new Mundo();
     }
 
-    public List<Escena> getEscenas() {
-        return this.escenas;
-    }
-    public List<Usuario> getUsuarios() {
-        return this.usuarios;
+    public Mundo getMundo(){
+        return this.mon;
     }
 }

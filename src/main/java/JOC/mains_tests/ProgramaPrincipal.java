@@ -4,6 +4,7 @@ import JOC.Mon.*;
 import JOC.Objectes.Objeto;
 import JOC.Objectes.ObjetoEquipable;
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 import java.util.Scanner;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -11,8 +12,6 @@ import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-
-import java.net.URI;
 
 
 public class ProgramaPrincipal {
@@ -27,7 +26,6 @@ public class ProgramaPrincipal {
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
-
     public static void pintar(Escena escena)
     {
         for(int i=0;i<escena.getAlto();i++) {
@@ -38,11 +36,13 @@ public class ProgramaPrincipal {
             System.out.println(linea);
         }
     }
+
     public static void main(String[] args) throws IOException{
         final HttpServer server = startServer();
         StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/");
         server.getServerConfiguration().addHttpHandler(staticHttpHandler,"/");
         Mundo mundo= new Mundo();
+        ServeiHTTP serv = new ServeiHTTP();
         boolean menu=true;
         while(menu)
         {
@@ -156,9 +156,10 @@ public class ProgramaPrincipal {
                     }
                     break;
                 case 10:
-                    System.out.println("Escriba el nombre de la escena");
+                    System.out.println("Escriba el numero de la escena");
                     linea = scanner.nextLine();
-                    Escena escena = mundo.obtenerEscena(linea);
+                    int a = Integer.parseInt(linea);
+                    Escena escena = mundo.obtenerEscena(a);
                     pintar(escena);
                     break;
                 case 11:

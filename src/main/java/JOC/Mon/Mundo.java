@@ -7,30 +7,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
-@Path("mundo")
+
 public class Mundo {
     private List<Usuario> usuarios = new ArrayList<Usuario>();
     private List<Escena> escenas= new ArrayList<Escena>();
     private List<Objeto> objetos= new ArrayList<Objeto>();
 
     public Mundo()  throws IOException{
+        //S'hauria de carregar tota la base de dades amb usuaris, etc
         cargarEscenasJson("escenarisJ.txt");
-        Dades.getInstance(escenas,usuarios);
-        Dades singleton = Dades.getInstance(escenas,usuarios);
-        escenas= singleton.getEscenas();
-        usuarios=singleton.getUsuarios();
         //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
-
-
     }
-    public void writeJSON(String nomEscenari, String nomJSON) throws IOException{
+    public void writeJSON(int id, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
-        Escena obj = this.obtenerEscena(nomEscenari);
+        Escena obj = this.obtenerEscena(id);
         String ruta_abs = new File("").getAbsolutePath();
         mapper.writeValue(new File(ruta_abs+"/src/main/resources/escenas/escenasJson/"+nomJSON+".json"), obj);
     }
@@ -96,40 +88,6 @@ public class Mundo {
             escenas.add(obj);
         }
         return 0;
-    }
-
-    @GET
-    @Path("/getEscenaris/{id}")
-    @Produces(MediaType.APPLICATION_JSON )
-    public Escena enviarEscenarioJSON(@PathParam("id") int id){
-       // return Response.status(200).entity(escenas.get(0)).build();
-        if(escenas.get(id)!=null)
-        return escenas.get(id);
-        else
-            return null;
-    }
-
-    @GET
-    @Path("/getUser/{nombre}")
-    @Produces(MediaType.TEXT_PLAIN) //NO RESPON, UNA FUNCIO SENZILLA SI QUE TIRA
-    public int enviarUsuarioJSON(@PathParam("nombre") String nombre) {
-        boolean encontrado = false;
-        int i = 0;
-        Usuario user = null;
-        while (i < usuarios.size() && !encontrado) {
-            user = usuarios.get(i);
-            if (user.getNickname().equals(nombre)) {
-                encontrado = true;
-            } else
-                i++;
-        }
-        if (encontrado)
-            return 1;
-            //return Response.ok(user).build();
-        else
-            return -1;
-            //return Response.status(201).build();
-
     }
 
     public boolean crearUsuario(Usuario u) {
@@ -211,26 +169,17 @@ public class Mundo {
             mapper.writeValue(new File(ruta_abs+"/src/main/resources/escenas/escenasJson/"+nom+".json"),escenas.get(i));
         }
     }
-    public Escena obtenerEscena(String nombre){
+    public Escena obtenerEscena(int id){
         boolean encontrado = false;
         int i = 0;
         Escena pantalla = null;
-        while (i < escenas.size() && !encontrado) {
-            pantalla = escenas.get(i);
-            if (pantalla.getNombre().equals(nombre)) {
-                encontrado = true;
-            } else
-                i++;
-        }
-        if (encontrado)
+        if(escenas.size()>id) {
+            pantalla = escenas.get(id);
             return pantalla;
+        }
         else
             return null;
     }
-
-    @GET
-    @Path("/getEscenas")
-    @Produces(MediaType.APPLICATION_JSON)
     public List<Escena> consultarEscenas() {
         return escenas;
     }
