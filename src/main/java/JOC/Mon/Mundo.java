@@ -20,9 +20,10 @@ public class Mundo {
 
     public Mundo()  throws IOException{
         cargarEscenasJson("escenarisJ.txt");
-        Dades.getInstance(escenas);
-        Dades singleton = Dades.getInstance(escenas);
+        Dades.getInstance(escenas,usuarios);
+        Dades singleton = Dades.getInstance(escenas,usuarios);
         escenas= singleton.getEscenas();
+        usuarios=singleton.getUsuarios();
         //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
 
 
@@ -227,6 +228,9 @@ public class Mundo {
             return null;
     }
 
+    @GET
+    @Path("/getEscenas")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Escena> consultarEscenas() {
         return escenas;
     }
