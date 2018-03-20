@@ -13,23 +13,28 @@ public class Dades {
     private static Dades ourInstance;
 
     private List<Escena> escenas;
+    private List<Usuario> usuarios;
 
 
-    public static Dades getInstance(List<Escena> esc) {
+    public static Dades getInstance(List<Escena> esc,List<Usuario> usuarios) {
         if(ourInstance==null)
         {
-            ourInstance = new Dades(esc);
+            ourInstance = new Dades(esc,usuarios);
         return ourInstance;}
         else
             return ourInstance;
     }
 
-    private Dades(List<Escena> esc) {
+    private Dades(List<Escena> esc,List<Usuario> usuarios) {
         this.escenas = esc;
+        this.usuarios=usuarios;
 
     }
 
     public List<Escena> getEscenas() {
-        return escenas;
+        return this.escenas;
+    }
+    public List<Usuario> getUsuarios() {
+        return this.usuarios;
     }
 }
