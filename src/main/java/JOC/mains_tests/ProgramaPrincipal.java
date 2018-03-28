@@ -41,7 +41,7 @@ public class ProgramaPrincipal {
         final HttpServer server = startServer();
         StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/");
         server.getServerConfiguration().addHttpHandler(staticHttpHandler,"/");
-        Mundo mundo= new Mundo();
+        Mundo mundo = Dades.getInstance().getMundo();
         ServeiHTTP serv = new ServeiHTTP();
         boolean menu=true;
         while(menu)

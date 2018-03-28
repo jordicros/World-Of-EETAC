@@ -3,10 +3,13 @@ package JOC.mains_tests;
 import JOC.Mon.Escena;
 import JOC.Mon.Mundo;
 import JOC.Mon.Usuario;
+import JOC.Objectes.Objeto;
+import JOC.Objectes.ObjetoEquipable;
 
 import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
@@ -48,6 +51,19 @@ public class ServeiHTTP {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Escena> consultarEscenas() {
     }*/
+
+    @POST
+    @Path("/objecte/add/{nombre}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response newObjeto(@PathParam("nombre") String nombre,Objeto objeto){
+        Usuario user = mon.consultarUsuario(nombre);
+        if(user!=null) {
+            mon.añadirObjetoAUsuario(user, objeto);
+            return Response.status(200).build();
+        }
+        else {return Response.status(204).build();}
+
+    }
 
 
 
