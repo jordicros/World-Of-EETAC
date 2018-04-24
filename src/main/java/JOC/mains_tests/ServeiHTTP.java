@@ -24,14 +24,7 @@ public class ServeiHTTP {
     public ServeiHTTP() throws IOException{
         mon = Dades.getInstance().getMundo();
     }
-    /*
-    @GET
-    @Path("/escenaris/{id}")
-    @Produces(MediaType.APPLICATION_JSON )
-    public Escena enviarEscenario(@PathParam("id") int id){
-        return mon.obtenerEscena(id);
 
-    }*/
     @GET
     @Path("/escenaris/{id}")
     public Response enviarEscenario(@PathParam("id") int id){
@@ -43,36 +36,18 @@ public class ServeiHTTP {
             return Response.status(204).build();
         }
     }
-    /*
-    @GET
-    @Path("/usuari/reg/{nom}/{pass}/{proff}")
-    @Produces (MediaType.APPLICATION_JSON)
-    public Usuario regUsuario(@PathParam("nom")String nom,@PathParam("pass") String pass,@PathParam("proff") int proff){
-        Usuario temp = new Usuario( nom, pass, proff);
-        mon.crearUsuario(temp);
-        return mon.consultarUsuario(nom);
-    }
-    */
-    @GET
-    @Path("/usuari/reg/{nom}/{pass}/{proff}")
-    public Response regUsuario(@PathParam("nom")String nom,@PathParam("pass") String pass,@PathParam("proff") int proff){
-        Usuario temp = new Usuario( nom, pass, proff);
-        boolean res =mon.crearUsuario(temp);
+    @POST
+    @Path("/usuari/register/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response regUsuario(Usuario user){
+        boolean res =mon.crearUsuario(user);
         if(res){
-            return Response.ok(mon.consultarUsuario(nom),MediaType.APPLICATION_JSON).build();
+            return Response.ok(mon.consultarUsuario(user.getNickname()),MediaType.APPLICATION_JSON).build();
         }
         else {
             return Response.status(204).build();
         }
     }
-    /*
-    @GET
-    @Path("/usuari/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON) //NO RESPON, UNA FUNCIO SENZILLA SI QUE TIRA
-    public Usuario enviarUsuarioJSON(@PathParam("nombre") String nombre) {
-        Usuario temp = mon.consultarUsuario(nombre);
-        return temp;
-    }*/
     @GET
     @Path("/usuari/{nombre}")
     public Response enviarUsuarioJSON(@PathParam("nombre") String nombre) {
@@ -84,12 +59,6 @@ public class ServeiHTTP {
             return Response.status(204).build();
         }
     }
-    /*@GET
-    @Path("/getEscenas")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Escena> consultarEscenas() {
-    }*/
-
     @POST
     @Path("/objecte/add/{nombre}")
     @Consumes(MediaType.APPLICATION_JSON)
