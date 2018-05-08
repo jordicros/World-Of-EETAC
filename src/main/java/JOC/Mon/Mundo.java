@@ -183,5 +183,7 @@ public class Mundo {
     public List<Escena> consultarEscenas() {
         return escenas;
     }
-
+    public List<Usuario> consultarUsuarios() {
+        return usuarios;
+    }
     }
