@@ -26,6 +26,14 @@ public class ServeiHTTP {
     }
 
     @GET
+    @Path("/proba")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Usuario Proba(){
+        Usuario u = new Usuario("Marc","Marcp",2);
+        return u;
+    }
+
+    @GET
     @Path("/escenaris/{id}")
     public Response enviarEscenario(@PathParam("id") int id){
         Escena escena=mon.obtenerEscena(id);
@@ -72,6 +80,17 @@ public class ServeiHTTP {
 
     }
 
+    @GET
+    @Path("/usuaris")
+    public Response enviarUsuaris(){
+        List<Usuario> usuaris = mon.consultarUsuarios();
+        if(usuaris.size()>0){
+            return Response.ok(usuaris,MediaType.APPLICATION_JSON).build();
+        }
+        else {
+            return Response.status(204).build();
+        }
+    }
 
 
 }
