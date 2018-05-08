@@ -20,8 +20,8 @@ public class ProgramaPrincipal {
         // create a resource config that scans for JAX-RS resources and providers
         // in edu.upc.dsa package
         final ResourceConfig rc = new ResourceConfig().packages("JOC");
+        rc.register(CORSFilter.class);
         rc.register(JacksonFeature.class);
-
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
