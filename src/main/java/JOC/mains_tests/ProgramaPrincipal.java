@@ -4,7 +4,9 @@ import JOC.Mon.*;
 import JOC.Objectes.Objeto;
 import JOC.Objectes.ObjetoEquipable;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -37,7 +39,7 @@ public class ProgramaPrincipal {
         }
     }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         final HttpServer server = startServer();
         StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/");
         server.getServerConfiguration().addHttpHandler(staticHttpHandler,"/");
@@ -101,17 +103,17 @@ public class ProgramaPrincipal {
                     System.out.println("Escriba el usuario, el identificador, el nombre, la descripcion y el tipo");
                     linea = scanner.nextLine();
                     partes = linea.split(" ");
-                    mundo.añadirObjetoAUsuario(mundo.consultarUsuario(partes[0]), new ObjetoEquipable(Integer.parseInt(partes[1]),partes[2],partes[3],Integer.parseInt(partes[4])));
+                    //mundo.añadirObjetoAUsuario(mundo.consultarUsuario(partes[0]), new ObjetoEquipable(Integer.parseInt(partes[1]),partes[2],partes[3],Integer.parseInt(partes[4])));
                     break;
                 case 5:
                     System.out.println("Escriba el nombre del usuario");
                     linea = scanner.nextLine();
-                    List<Objeto> lista= mundo.consultarObjetosDeUsuario(mundo.consultarUsuario(linea));
+                    /*List<Objeto> lista= mundo.consultarObjetosDeUsuario(mundo.consultarUsuario(linea));
                     for(int i=0;i<lista.size();i++) {
                         Objeto obj = lista.get(i);
                         System.out.println("ID: "+obj.getID()+" Nombre: "+obj.getNombre()+" Descripción: "+obj.getDescripcion()+" Tipo: "+obj.getTipo());
                     }
-                    break;
+                    break;*/
                 case 6:
                     System.out.println("Escriba el nombre del usuario");
                     linea = scanner.nextLine();
@@ -128,12 +130,12 @@ public class ProgramaPrincipal {
                     System.out.println("Escriba el nombre del objeto");
                     linea = scanner.nextLine();
                     user=mundo.consultarUsuario(usuario);
-                    res= mundo.eliminarObjetosDeUsuario(user,mundo.consultarObjetoDeUsuario(user,linea));
+                    /*res= mundo.eliminarObjetosDeUsuario(user,mundo.consultarObjetoDeUsuario(user,linea));
                     if(res)
                         System.out.println("Eliminado correctamente");
                     else
                         System.out.println("No se ha podido eliminar");
-                    break;
+                    break;*/
                 case 8:
                     System.out.println("Escriba el nombre del usuario origen");
                     linea = scanner.nextLine();
@@ -143,7 +145,7 @@ public class ProgramaPrincipal {
                     Usuario user2=mundo.consultarUsuario(linea);
                     System.out.println("Escriba el nombre del objeto");
                     linea = scanner.nextLine();
-                    mundo.transferirObjetoEntreUsuarios(user1,user2,mundo.consultarObjetoDeUsuario(user1,linea));
+                    //mundo.transferirObjetoEntreUsuarios(user1,user2,mundo.consultarObjetoDeUsuario(user1,linea));
                     break;
                 case 9:
                     List<Escena> escenas= mundo.consultarEscenas();

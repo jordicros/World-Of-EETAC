@@ -7,6 +7,8 @@ import JOC.Objectes.Objeto;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ public class Dades {
     private Mundo mon;
 
 
-    public static Dades getInstance() throws IOException {
+    public static Dades getInstance() throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException {
         if(ourInstance==null)
         {
             ourInstance = new Dades();
@@ -27,7 +29,7 @@ public class Dades {
             return ourInstance;
     }
 
-    private Dades() throws IOException {
+    private Dades() throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException {
             this.mon = new Mundo();
     }
 

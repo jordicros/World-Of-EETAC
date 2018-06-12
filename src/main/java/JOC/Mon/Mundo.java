@@ -1,11 +1,15 @@
 package JOC.Mon;
 
 import JOC.Celes.*;
+import JOC.DAO.Factory;
+import JOC.DAO.Session;
 import JOC.Objectes.Objeto;
 import JOC.mains_tests.Dades;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +18,13 @@ public class Mundo {
     private List<Usuario> usuarios = new ArrayList<Usuario>();
     private List<Escena> escenas= new ArrayList<Escena>();
     private List<Objeto> objetos= new ArrayList<Objeto>();
+    private Session session;
 
-    public Mundo()  throws IOException{
+    public Mundo()  throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         //S'hauria de carregar tota la base de dades amb usuaris, etc
         cargarEscenasJson("escenarisJ.txt");
         //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
+        cargarUsuarios();
     }
     public void writeJSON(int id, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
@@ -89,11 +95,32 @@ public class Mundo {
         }
         return 0;
     }
+    public int cargarUsuarios() throws IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
+        Factory factory= new Factory();
+        session = factory.openSession();
+        int res =session.initBD();
+        if(res==0) {
+            boolean fin=false;
+            int i=0;
+            while(!fin) {
+                Usuario usuario = (Usuario) session.get(i, Usuario.class);
+                if(usuario==null){
+                    fin=true;
+                }
+                else{
+                    usuarios.add(usuario);
+                }
+            }
+        }
+        return 0;
+    }
 
-    public boolean crearUsuario(Usuario u) {
+    public boolean crearUsuario(Usuario u) throws IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         //Primer ens asegurem que el nickname sigui unic
         if (consultarUsuario(u.getNickname()) == null) {
             usuarios.add(u);
+            //Peta pk falten els camps inventari, llista de amics
+            //session.save(u);
             return true;
         }
         else
@@ -124,22 +151,22 @@ public class Mundo {
         else
             return null;
     }
-    public void añadirObjetoAUsuario(Usuario u, Objeto o) {
+   /* public void añadirObjetoAUsuario(Usuario u, Objeto o) {
         int id = usuarios.indexOf(u);
         if(id==-1)
             return;
         Usuario user= usuarios.get(id);
         user.getInventario().add(o);
         
-    }
-    public List<Objeto> consultarObjetosDeUsuario(Usuario U) {
+    }*/
+    /*public List<Objeto> consultarObjetosDeUsuario(Usuario U) {
         return U.getInventario();
-    }
+    }*/
     public Objeto consultarObjetoDeUsuario(Usuario u,String nombreObjeto) {
         boolean encontrado = false;
         int i = 0;
         Objeto obj=null;
-        List<Objeto> objetos =u.getInventario();
+       // List<Objeto> objetos =u.getInventario();
         while (i < objetos.size() && !encontrado) {
             obj = objetos.get(i);
             if (obj.getNombre().equals(nombreObjeto)) {
@@ -152,13 +179,13 @@ public class Mundo {
         else
             return null;
     }
-    public boolean eliminarObjetosDeUsuario(Usuario u, Objeto o){
+   /* public boolean eliminarObjetosDeUsuario(Usuario u, Objeto o){
         return u.getInventario().remove(o);
     }
     public void transferirObjetoEntreUsuarios(Usuario origen,Usuario destino,Objeto o) {
         origen.getInventario().remove(o);
         destino.getInventario().add(o);
-    }
+    }*/
     public void guardarEscenasJSON() throws java.io.IOException {
         for(int i=0;i<escenas.size();i++)
         {

@@ -15,8 +15,8 @@ public class Usuario {
     private int defense;
     private int magicAttack;
     private int magicDefense;
-    private String[] listaAmigos;
-    private List<Objeto> inventario;
+   // private String[] listaAmigos;
+   // private List<Objeto> inventario;
     public String getNickname(){
         return this.nickname;
     }
@@ -56,7 +56,7 @@ public class Usuario {
     public int getMagicDefense() {
         return magicDefense;
     }
-    public void setInventario(List<Objeto> inventario) {
+    /*public void setInventario(List<Objeto> inventario) {
         this.inventario = inventario;
     }
     public List<Objeto> getInventario() {
@@ -67,19 +67,19 @@ public class Usuario {
     }
     public String[] getListaAmigos() {
         return listaAmigos;
-    }
+    }*/
 
     public Usuario()
     {
         //this.listaAmigos = new String[50];
-        this.inventario = new LinkedList<Objeto>(); //Potser es mes rentable un altre tipus d'estructura de Dades.
+        //this.inventario = new LinkedList<Objeto>(); //Potser es mes rentable un altre tipus d'estructura de Dades.
     }
     public Usuario(String nick, String password, int profession){
         this.nickname = nick;
         this.password = password;
         this.profession = profession;
         //this.listaAmigos = new String[50];
-        this.inventario = new LinkedList<Objeto>(); //Potser es mes rentable un altre tipus d'estructura de Dades.
+        //this.inventario = new LinkedList<Objeto>(); //Potser es mes rentable un altre tipus d'estructura de Dades.
         if(getProfession() == 1)
         {
             //Stats iniciales guerrero

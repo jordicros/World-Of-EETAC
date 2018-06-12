@@ -138,7 +138,7 @@ public class Session {
     public int initBD() throws java.sql.SQLException{
         try {
             //conn = DriverManager.getConnection("http://147.83.7.157/" + "?user=ea0&password=Mazinger82");
-            conn = DriverManager.getConnection("jdbc:mysql://147.83.7.157:3306/DAO"+ "?user=root&password=Mazinger82");
+            conn = DriverManager.getConnection("jdbc:mysql://147.83.7.157:3306/WORLDOFEETAC"+ "?user=root&password=Mazinger82");
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
@@ -151,7 +151,7 @@ public class Session {
         }
         else {
             Statement stmt = conn.createStatement();
-            stmt.execute("USE DAO");
+            stmt.execute("USE WORLDOFEETAC");
             return 0;
         }
     }

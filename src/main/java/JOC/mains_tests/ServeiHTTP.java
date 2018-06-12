@@ -11,7 +11,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ import java.util.List;
 public class ServeiHTTP {
 
     private  Mundo mon;
-    public ServeiHTTP() throws IOException{
+    public ServeiHTTP() throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         mon = Dades.getInstance().getMundo();
     }
 
@@ -47,7 +49,7 @@ public class ServeiHTTP {
     @POST
     @Path("/usuari/register/")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response regUsuario(Usuario user){
+    public Response regUsuario(Usuario user)throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         boolean res =mon.crearUsuario(user);
         if(res){
             return Response.ok(mon.consultarUsuario(user.getNickname()),MediaType.APPLICATION_JSON).build();
@@ -67,7 +69,7 @@ public class ServeiHTTP {
             return Response.status(204).build();
         }
     }
-    @POST
+    /*@POST
     @Path("/objecte/add/{nombre}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newObjeto(@PathParam("nombre") String nombre,Objeto objeto){
@@ -78,7 +80,7 @@ public class ServeiHTTP {
         }
         else {return Response.status(204).build();}
 
-    }
+    }*/
 
     @GET
     @Path("/usuaris")
