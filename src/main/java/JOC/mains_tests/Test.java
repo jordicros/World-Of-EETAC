@@ -2,15 +2,16 @@ package JOC.mains_tests;
 
 import JOC.Objectes.Objeto;
 import JOC.Objectes.ObjetoEquipable;
-import org.junit.Assert;
 import JOC.Mon.*;
+import org.junit.Assert;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 
 public class Test {
 
@@ -29,25 +30,25 @@ public class Test {
     @org.junit.Test
     public void testCrearUser()throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         Usuario u = new Usuario("Maria","Mariap",1);
-        Assert.assertEquals(true, mundo.crearUsuario(u));
+        assertEquals(true, mundo.crearUsuario(u));
         u = new Usuario("Marc","Mp",3);
-        Assert.assertEquals(false, mundo.crearUsuario(u));
+        assertEquals(false, mundo.crearUsuario(u));
 
     }
 
     @org.junit.Test
     public void testBorrarUser(){
-        Assert.assertEquals(true, mundo.eliminarUsuario("Juan"));
-        Assert.assertEquals(false, mundo.eliminarUsuario("Maria"));
+        assertEquals(true, mundo.eliminarUsuario("Juan"));
+        assertEquals(false, mundo.eliminarUsuario("Maria"));
     }
 
     @org.junit.Test
     public void testConsultarUser(){
         Usuario user = mundo.consultarUsuario("Marc");
-        Assert.assertEquals("Marc",user.getNickname());
-        Assert.assertEquals("Marcp",user.getPassword());
-        Assert.assertEquals(2,user.getProfession());
-        Assert.assertEquals(null,mundo.consultarUsuario("Pepito"));
+        assertEquals("Marc",user.getNickname());
+        assertEquals("Marcp",user.getPassword());
+        assertEquals(2,user.getProfession());
+        assertEquals(null,mundo.consultarUsuario("Pepito"));
     }
 
     @org.junit.Test

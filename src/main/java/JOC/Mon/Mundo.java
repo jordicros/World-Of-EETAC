@@ -6,7 +6,6 @@ import JOC.DAO.Session;
 import JOC.Objectes.Objeto;
 import JOC.mains_tests.Dades;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.java.swing.plaf.windows.TMSchema;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
