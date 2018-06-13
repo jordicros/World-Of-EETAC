@@ -34,7 +34,23 @@ public class Objeto {
         return this.tipo;
     } //Arma, pocion, etc
 
-    public Objeto(int id,String nombre, String descripcion, int tipo)
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public Objeto(int id, String nombre, String descripcion, int tipo)
     {
         this.id=id;
         this.nombre=nombre;

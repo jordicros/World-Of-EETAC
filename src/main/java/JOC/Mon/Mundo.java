@@ -11,7 +11,9 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Mundo {
@@ -22,6 +24,7 @@ public class Mundo {
 
     public Mundo()  throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         //S'hauria de carregar tota la base de dades amb usuaris, etc
+        cargarObjetos();
         cargarEscenasJson("escenarisJ.txt");
         //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
         cargarUsuarios();
@@ -43,13 +46,10 @@ public class Mundo {
         reader.close();
         for(int a=0;a<num;a++) {
             Escena escena= new Escena();
-            int numCofres,numPuertas;
             reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/escenas/escenasTxt/"+rutes[a]));
             escena.setNombre(rutes[a]);
             escena.setAncho(Integer.parseInt(reader.readLine()));
             escena.setAlto(Integer.parseInt(reader.readLine()));
-            numCofres=Integer.parseInt(reader.readLine());
-            numPuertas=Integer.parseInt(reader.readLine());
             escena.setDescripcion(reader.readLine());
             Celda[][] matriz= new Celda[escena.getAlto()][escena.getAncho()];
             for(int i=0;i<escena.getAlto();i++) {
@@ -61,7 +61,14 @@ public class Mundo {
                             matriz[i][j]=new Hierba();
                             break;
                         case "X": //JOC.Celes.Cofre
-                            matriz[i][j]=new Cofre();
+                            Random rand = new Random();
+                            List<Objeto> contenido=new LinkedList<Objeto>();
+                            for (int k = 0; k <4 ; k++) {
+                                int objectId = rand.nextInt(objetos.size());
+                                contenido.add(objetos.get(objectId));
+                            }
+                            matriz[i][j]=new Cofre(contenido);
+
                             break;
                         case "G": //Porta
                             matriz[i][j]=new Puerta();
@@ -95,13 +102,29 @@ public class Mundo {
         }
         return 0;
     }
-    public int cargarUsuarios() throws IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
+    public int cargarObjetos() throws IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         Factory factory= new Factory();
         session = factory.openSession();
         int res =session.initBD();
         if(res==0) {
+            boolean fin = false;
+            int i = 1;
+            while (!fin) {
+                Objeto objeto = (Objeto) session.get(i, Objeto.class);
+                if (objeto == null) {
+                    fin = true;
+                } else {
+                    objeto.setId(i - 1);
+                    objetos.add(objeto);
+                    i++;
+                }
+            }
+        }
+        return 0;
+    }
+    public int cargarUsuarios() throws IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
             boolean fin=false;
-            int i=0;
+            int i=1;
             while(!fin) {
                 Usuario usuario = (Usuario) session.get(i, Usuario.class);
                 if(usuario==null){
@@ -109,9 +132,9 @@ public class Mundo {
                 }
                 else{
                     usuarios.add(usuario);
+                    i++;
                 }
             }
-        }
         return 0;
     }
 
@@ -120,7 +143,7 @@ public class Mundo {
         if (consultarUsuario(u.getNickname()) == null) {
             usuarios.add(u);
             //Peta pk falten els camps inventari, llista de amics
-            //session.save(u);
+            session.save(u);
             return true;
         }
         else

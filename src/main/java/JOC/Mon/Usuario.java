@@ -1,6 +1,7 @@
 package JOC.Mon;
 
 import JOC.Objectes.Objeto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.LinkedList;
@@ -22,9 +23,6 @@ public class Usuario {
     }
     public String getPassword(){
         return this.password;
-    }
-    public void setLevel(){
-        this.level++;
     }
     public int getLevel(){
         return this.level;
@@ -55,6 +53,18 @@ public class Usuario {
     }
     public int getMagicDefense() {
         return magicDefense;
+    }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    public void setProfession(int profession) {
+        this.profession = profession;
     }
     /*public void setInventario(List<Objeto> inventario) {
         this.inventario = inventario;

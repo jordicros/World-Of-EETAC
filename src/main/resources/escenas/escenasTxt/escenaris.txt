@@ -1,4 +1,4 @@
 1
-escenari4.txt
+escenari1.txt
 escenari3.txt
 escenari2.txt

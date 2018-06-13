@@ -69,6 +69,18 @@ public class ServeiHTTP {
             return Response.status(204).build();
         }
     }
+    @POST
+    @Path("/usuari/login/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response login(Usuario user) {
+        Usuario temp = mon.consultarUsuario(user.getNickname());
+        if(temp.getPassword().equals(user.getPassword())){
+            return Response.ok(mon.consultarUsuario(user.getNickname()),MediaType.APPLICATION_JSON).build();
+        }
+        else {
+            return Response.status(204).build();
+        }
+    }
     /*@POST
     @Path("/objecte/add/{nombre}")
     @Consumes(MediaType.APPLICATION_JSON)

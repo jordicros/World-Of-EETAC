@@ -1,6 +1,7 @@
 package JOC.Celes;
 import JOC.Objectes.Objeto;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -10,7 +11,6 @@ public class Cofre extends Celda {
     public String getSimbolo() {
         return "X";
     }
-
     private List<Objeto> contenido;
     public int getPisable() {
         return 0;
@@ -21,5 +21,14 @@ public class Cofre extends Celda {
     public List<Objeto> getContenido(){
         return this.contenido;
     }
+    public Cofre(List<Objeto> contenido){
+        this.contenido=contenido;
+    }
     public void abrir(){getContenido();}
+    public void addObject(Objeto objeto){
+        contenido.add(objeto);
+    }
+
+    public Cofre() {
+    }
 }
