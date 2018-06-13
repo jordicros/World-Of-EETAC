@@ -2,6 +2,7 @@ package JOC.mains_tests;
 
 import JOC.Mon.Escena;
 import JOC.Mon.Mundo;
+import JOC.Mon.Partida;
 import JOC.Mon.Usuario;
 import JOC.Objectes.Objeto;
 import JOC.Objectes.ObjetoEquipable;
@@ -105,6 +106,25 @@ public class ServeiHTTP {
             return Response.status(204).build();
         }
     }
-
-
+    @POST
+    @Path("/partida/start/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response startGame(Partida partida)throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
+        partida =mon.crearPartida(partida);
+        return Response.ok(partida,MediaType.APPLICATION_JSON).build();
+    }
+    @POST
+    @Path("/partida/nextRound/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response nextRoundGame(Partida partida)throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
+        partida =mon.gestionarPartida(partida);
+        return Response.ok(partida,MediaType.APPLICATION_JSON).build();
+    }
+    @POST
+    @Path("/partida/finish/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response partidaEnded(Partida partida)throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
+        mon.guardarPartida(partida);
+        return Response.ok(200).build();
+    }
 }
