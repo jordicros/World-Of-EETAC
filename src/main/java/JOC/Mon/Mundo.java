@@ -6,6 +6,7 @@ import JOC.DAO.Session;
 import JOC.Objectes.Objeto;
 import JOC.mains_tests.Dades;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.java.swing.plaf.windows.TMSchema;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class Mundo {
     private List<Usuario> usuarios = new ArrayList<Usuario>();
+    private List<Partida> partides = new ArrayList<Partida>();
     private List<Escena> escenas= new ArrayList<Escena>();
     private List<Objeto> objetos= new ArrayList<Objeto>();
     private Session session;
@@ -212,5 +214,35 @@ public class Mundo {
     }
     public List<Usuario> consultarUsuarios() {
         return usuarios;
+    }
+
+
+    //Es crea una partida i es guarda a la List, fins que s'acabi. Mentres va la partida, l'usuari anira informant al server per generar nous cofres i enemics.
+    // Així successivament fins que es mori, que es guardarà la partida a la BBDD
+    public Partida crearPartida(Partida partida)
+    {
+        this.partides.add(partida);
+        partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
+        return partida;
+    }
+    public Partida gestionarPartida(Partida partida)
+    {
+        //Buscar partida
+        int i = this.partides.indexOf(partida);
+        partida = this.partides.get(i);
+        //Posar cofres a llocs aleatoris amb objectes aleatoris
+        partida.ronda++;
+        partida.enemics=partida.ronda*15 +20;
+
+        return partida;
+    }
+    public Partida guardarPartida(Partida partida)
+    {
+        //Buscar partida
+        int i = this.partides.indexOf(partida);
+        partida = this.partides.get(i);
+        //guardar db
+
+        return partida;
     }
     }
