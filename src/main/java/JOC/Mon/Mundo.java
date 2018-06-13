@@ -243,6 +243,7 @@ public class Mundo {
     // Així successivament fins que es mori, que es guardarà la partida a la BBDD
     public Partida crearPartida(Partida partida)
     {
+        //FALTA CARREGAR EL MAPA, AMB LES ESCENES  I TRANSICIONS, ELS COFRES NO.
         this.partides.add(partida);
         partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
         return partida;
@@ -252,7 +253,7 @@ public class Mundo {
         //Buscar partida
         int i = this.partides.indexOf(partida);
         partida = this.partides.get(i);
-        //Posar cofres a llocs aleatoris amb objectes aleatoris
+        //Posar cofres a llocs aleatoris amb objectes aleatoris (pensa que les escenes estan a dins partida.map)
         partida.ronda++;
         partida.enemics=partida.ronda*15 +20;
 
