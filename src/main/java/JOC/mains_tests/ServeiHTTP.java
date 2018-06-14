@@ -1,11 +1,13 @@
 package JOC.mains_tests;
 
+import JOC.DAO.Main;
 import JOC.Mon.Escena;
 import JOC.Mon.Mundo;
 import JOC.Mon.Partida;
 import JOC.Mon.Usuario;
 import JOC.Objectes.Objeto;
 import JOC.Objectes.ObjetoEquipable;
+import org.apache.log4j.Logger;
 
 import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
@@ -109,8 +111,9 @@ public class ServeiHTTP {
     @POST
     @Path("/partida/start/")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response startGame(Partida partida)throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
-        partida =mon.crearPartida(partida);
+        //partida =mon.crearPartida(partida);
         return Response.ok(partida,MediaType.APPLICATION_JSON).build();
     }
     @POST

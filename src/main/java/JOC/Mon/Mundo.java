@@ -2,10 +2,12 @@ package JOC.Mon;
 
 import JOC.Celes.*;
 import JOC.DAO.Factory;
+import JOC.DAO.Main;
 import JOC.DAO.Session;
 import JOC.Objectes.Objeto;
 import JOC.mains_tests.Dades;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -23,6 +25,7 @@ public class Mundo {
     private List<Objeto> objetos= new ArrayList<Objeto>();
     private List<Mapa> mapes = new ArrayList<Mapa>();
     private Session session;
+    final static Logger log = Logger.getLogger(Main.class);
 
     public Mundo()  throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         //S'hauria de carregar tota la base de dades amb usuaris, etc
@@ -278,6 +281,7 @@ public class Mundo {
     // Així successivament fins que es mori, que es guardarà la partida a la BBDD
     public Partida crearPartida(Partida partida)
     {
+        log.info("Detalls de la partida: "+partida.jugador + Integer.toString(partida.mapSelection));
         //FALTA CARREGAR EL MAPA, AMB LES ESCENES  I TRANSICIONS, ELS COFRES NO.
         if(partida.mapSelection==0)
             this.mapes.get(0);
