@@ -21,6 +21,7 @@ public class Mundo {
     private List<Partida> partides = new ArrayList<Partida>();
     private List<Escena> escenas= new ArrayList<Escena>();
     private List<Objeto> objetos= new ArrayList<Objeto>();
+    private List<Mapa> mapes = new ArrayList<Mapa>();
     private Session session;
 
     public Mundo()  throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
@@ -29,6 +30,7 @@ public class Mundo {
         cargarEscenasJson("escenarisJ.txt");
         //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
         cargarUsuarios();
+        ferMapes(this.escenas);
     }
     public void writeJSON(int id, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
@@ -239,11 +241,48 @@ public class Mundo {
     }
 
 
+    public List<Mapa> ferMapes(List<Escena> pantalles){
+        List<Escena> escenes = new ArrayList<Escena>();
+        List<Transicion> canvis = new ArrayList<Transicion>();
+        List<Mapa> mapes = new ArrayList<Mapa>();
+        //Fer mapes...(falta fer les escenes i saber com combinarles)
+        Mapa map = new Mapa(escenes,canvis);
+        this.mapes.add(map);//Fer aixo per cada mapa
+        return this.mapes;
+    }
+
+    public Mapa chestGenerator(Mapa mapWithNoChest)
+    {
+        int alt,ample;
+        int counter = 4;
+        for(int j=0;j<mapWithNoChest.pantalles.size();j++) {
+
+            List<Celda> pisables = new ArrayList<Celda>();
+            for (int i = 0; i < mapWithNoChest.pantalles.get(j).getAncho();i++) {
+                for(int x=0;i <mapWithNoChest.pantalles.get(j).getAlto();x++){
+                    if(mapWithNoChest.pantalles.get(j).getDatos()[x][i].getPisable()==1)
+                        pisables.add(mapWithNoChest.pantalles.get(j).getDatos()[x][i]);
+                }
+            }
+            Random r = new Random();
+            Celda cofre = pisables.get(r.nextInt(pisables.size()-0));
+            cofre = new Cofre();
+            ((Cofre) cofre).addObject(new Objeto());
+                   //Afegir material al cofre
+        }
+        return mapWithNoChest;
+
+    }
+
     //Es crea una partida i es guarda a la List, fins que s'acabi. Mentres va la partida, l'usuari anira informant al server per generar nous cofres i enemics.
     // Així successivament fins que es mori, que es guardarà la partida a la BBDD
     public Partida crearPartida(Partida partida)
     {
         //FALTA CARREGAR EL MAPA, AMB LES ESCENES  I TRANSICIONS, ELS COFRES NO.
+        if(partida.mapSelection==0)
+            this.mapes.get(0);
+        else if(partida.mapSelection==1)
+           this.mapes.get(1);
         this.partides.add(partida);
         partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
         return partida;
@@ -253,7 +292,7 @@ public class Mundo {
         //Buscar partida
         int i = this.partides.indexOf(partida);
         partida = this.partides.get(i);
-        //Posar cofres a llocs aleatoris amb objectes aleatoris (pensa que les escenes estan a dins partida.map)
+        chestGenerator(partida.map);
         partida.ronda++;
         partida.enemics=partida.ronda*15 +20;
 
