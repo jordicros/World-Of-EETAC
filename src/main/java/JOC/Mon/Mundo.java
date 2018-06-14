@@ -237,6 +237,16 @@ public class Mundo {
     public List<Usuario> consultarUsuarios() {
         return usuarios;
     }
+    public Mapa ferMapa(List<Escena> pantalles, int i){
+        List<Escena> escenes = new ArrayList<Escena>();
+        List<Transicion> canvis = new ArrayList<Transicion>();
+        if(i==0)
+        {
+            //Transicions + pantalles aqui
+        }
+        Mapa map = new Mapa(escenes,canvis);
+        return map;
+    }
 
 
     //Es crea una partida i es guarda a la List, fins que s'acabi. Mentres va la partida, l'usuari anira informant al server per generar nous cofres i enemics.
@@ -244,6 +254,10 @@ public class Mundo {
     public Partida crearPartida(Partida partida)
     {
         //FALTA CARREGAR EL MAPA, AMB LES ESCENES  I TRANSICIONS, ELS COFRES NO.
+        if(partida.mapSelection==0)
+             partida.map= ferMapa(this.escenas, 0);
+        else if(partida.mapSelection==1)
+            partida.map=ferMapa(this.escenas, 1);
         this.partides.add(partida);
         partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
         return partida;
