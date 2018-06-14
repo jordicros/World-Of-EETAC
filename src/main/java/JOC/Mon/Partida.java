@@ -8,13 +8,12 @@ public class Partida {
     int mapSelection;
     Usuario jugador;
     String nom;
-    List<Escena> mapaFull;
     int ronda=0;
     int enemics;
     long score=0;
-    public Partida(Usuario jug, List<Escena> mapa){
+    public Partida(Usuario jug, int a){
 
         jugador=jug;
-        mapaFull=mapa;
+        this.mapSelection=a;
     }
 }
