@@ -1,21 +1,24 @@
 package JOC.Celes;
 
-public class Rio extends Celda{
-    public String getSimbolo() {
-        return "-";
-    }
+public class Ventana extends Celda {
 
     @Override
     public int getPisablePersonaje() {
         return 0;
     }
 
+    @Override
     public int getInteractuable() {
         return 0;
     }
 
     @Override
     public int getPisableZombie() {
-        return 0;
+        return 1;
+    }
+
+    @Override
+    public String getSimbolo() {
+        return "W";
     }
 }

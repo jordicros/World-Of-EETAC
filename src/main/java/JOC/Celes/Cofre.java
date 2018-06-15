@@ -12,7 +12,10 @@ public class Cofre extends Celda {
         return "X";
     }
     private List<Objeto> contenido;
-    public int getPisable() {
+    public int getPisablePersonaje() {
+        return 0;
+    }
+    public int getPisableZombie() {
         return 0;
     }
     public int getInteractuable() {

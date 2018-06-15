@@ -1,13 +1,13 @@
+15
 10
-10
-Prueba siendo todo ceros menos cofres
-0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0
-0 0 X 0 G 0 0 0 0 0
-0 0 0 X 0 G 0 0 0 0
-0 0 0 0 X 0 G 0 0 0
-0 0 0 0 0 X 0 G 0 0
-0 0 G 0 0 0 X 0 0 0
-0 0 0 G 0 0 0 X 0 0
-0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0
+Escenari dreta del principal Mazmorra
+P P P P P P P P P P P P P P P 
+D 0 0 T P 0 0 0 P 0 0 0 0 0 P
+P 0 0 0 P 0 0 0 P 0 0 T 0 0 P
+P 0 0 0 P 0 0 0 P 0 0 0 0 0 W 
+P 0 P P P P P 0 P P P P 0 0 P
+P 0 0 0 0 0 0 0 0 0 0 0 0 0 P
+W 0 0 0 T 0 0 0 0 0 T 0 0 0 P 
+P T 0 0 0 0 0 0 0 0 0 0 0 0 P
+P 0 0 0 0 0 0 0 0 0 0 0 0 0 P 
+P P P P W P P P W P P P P D P

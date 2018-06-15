@@ -113,7 +113,7 @@ public class ServeiHTTP {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response startGame(Partida partida)throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
-        //partida =mon.crearPartida(partida);
+        //partida =mon.crearPartida(partida); Quan estiguin els mapes, discommenttt
         return Response.ok(partida,MediaType.APPLICATION_JSON).build();
     }
     @POST

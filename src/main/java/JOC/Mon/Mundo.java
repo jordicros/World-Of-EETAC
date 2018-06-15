@@ -30,8 +30,8 @@ public class Mundo {
     public Mundo()  throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         //S'hauria de carregar tota la base de dades amb usuaris, etc
         cargarObjetos();
-        cargarEscenasJson("escenarisJ.txt");
-        //cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
+        //cargarEscenasJson("escenarisJ.txt");
+        cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
         cargarUsuarios();
         ferMapes(this.escenas);
     }
@@ -76,11 +76,17 @@ public class Mundo {
                             matriz[i][j]=new Cofre(contenido);
 
                             break;
-                        case "G": //Porta
+                        case "D": //Porta
                             matriz[i][j]=new Puerta();
                             break;
-                        case "-": //Riu
-                            matriz[i][j]=new Rio();
+                        case "P": //Paret
+                            matriz[i][j]=new Paret();
+                            break;
+                        case "W": //Finestra
+                            matriz[i][j]=new Ventana();
+                            break;
+                        case "T": //Trampilla
+                            matriz[i][j]=new Trampilla();
                             break;
                         default:
                             matriz[i][j]=new Hierba();
@@ -263,7 +269,7 @@ public class Mundo {
             List<Celda> pisables = new ArrayList<Celda>();
             for (int i = 0; i < mapWithNoChest.pantalles.get(j).getAncho();i++) {
                 for(int x=0;i <mapWithNoChest.pantalles.get(j).getAlto();x++){
-                    if(mapWithNoChest.pantalles.get(j).getDatos()[x][i].getPisable()==1)
+                    if(mapWithNoChest.pantalles.get(j).getDatos()[x][i].getPisablePersonaje()==1)
                         pisables.add(mapWithNoChest.pantalles.get(j).getDatos()[x][i]);
                 }
             }
