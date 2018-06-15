@@ -11,4 +11,7 @@ public class Transicion {
         X = x;
         Y = y;
     }
+
+    public Transicion() {
+    }
 }
