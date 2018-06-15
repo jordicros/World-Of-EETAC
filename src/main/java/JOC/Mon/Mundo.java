@@ -322,13 +322,13 @@ public class Mundo {
     // Així successivament fins que es mori, que es guardarà la partida a la BBDD
     public Partida crearPartida(Partida partida)
     {
-        log.info("Detalls de la partida: "+partida.jugador + Integer.toString(partida.mapSelection));
+        log.info("Detalls de la partida: "+partida.jugador + "     " + Integer.toString(partida.mapSelection));
         if(partida.mapSelection==0)
-            this.mapes.get(0);
+             partida.map = this.mapes.get(0);
         else if(partida.mapSelection==1)
-           this.mapes.get(1);
+           partida.map = this.mapes.get(1);
         this.partides.add(partida);
-        partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
+        //partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
         return partida;
     }
     public Partida gestionarPartida(Partida partida)
