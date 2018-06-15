@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value=Hierba.class, name="hierba"),
-        @JsonSubTypes.Type(value=Cofre.class, name="cofre"),
-        @JsonSubTypes.Type(value=Puerta.class, name="puerta"),
-        @JsonSubTypes.Type(value=Puerta.class, name="ventana"),
-        @JsonSubTypes.Type(value=Puerta.class, name="trampilla"),
-        @JsonSubTypes.Type(value=Puerta.class, name="paret"),
+        @JsonSubTypes.Type(value=Hierba.class, name="Hierba"),
+        @JsonSubTypes.Type(value=Cofre.class, name="Cofre"),
+        @JsonSubTypes.Type(value=Puerta.class, name="Puerta"),
+        @JsonSubTypes.Type(value=Ventana.class, name="Ventana"),
+        @JsonSubTypes.Type(value=Trampilla.class, name="Trampilla"),
+        @JsonSubTypes.Type(value=Paret.class, name="Paret"),
         @JsonSubTypes.Type(value=Rio.class, name="Rio"),
 })
 

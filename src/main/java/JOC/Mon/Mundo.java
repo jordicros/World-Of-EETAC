@@ -30,8 +30,8 @@ public class Mundo {
     public Mundo()  throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         //S'hauria de carregar tota la base de dades amb usuaris, etc
         cargarObjetos();
-        //cargarEscenasJson("escenarisJ.txt");
-        cargarEscenasTxt("escenaris.txt"); //Provisional, mentres enfoquem a generar/llegir JSON
+        cargarEscenasJson("escenarisJ.txt");
+        //cargarEscenasTxt("escenaris.txt"); //Per editar mapes
         cargarUsuarios();
         ferMapes(this.escenas);
     }
@@ -250,12 +250,47 @@ public class Mundo {
     }
 
 
-    public List<Mapa> ferMapes(List<Escena> pantalles){
-        List<Escena> escenes = new ArrayList<Escena>();
+    public List<Mapa> ferMapes(List<Escena> pantalles) throws IOException {
+        List<Escena> escenes = pantalles;
         List<Transicion> canvis = new ArrayList<Transicion>();
         List<Mapa> mapes = new ArrayList<Mapa>();
-        //Fer mapes...(falta fer les escenes i saber com combinarles)
-        Mapa map = new Mapa(escenes,canvis);
+
+        //Mapeig de les transicions (per poderles editar els mapes 100% fora del codi)
+        String ruta_abs = new File("").getAbsolutePath();
+        BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/transicions/transicions.txt"));
+        int num = Integer.parseInt(reader.readLine());
+        String[] rutes= new String[num];
+        for(int i=0;i<num;i++) {
+            rutes[i]=reader.readLine();
+        }
+
+        for(int a=0;a<num;a++) {
+            TransicionMapper transicion = new TransicionMapper();
+            reader = new BufferedReader(new FileReader(ruta_abs + "/src/main/resources/transicions/" + rutes[a]));
+            transicion.escenario1 = Integer.parseInt(reader.readLine());
+            transicion.escenario2 = Integer.parseInt(reader.readLine());
+            transicion.X1Puerta = Integer.parseInt(reader.readLine());
+            transicion.Y1Puerta = Integer.parseInt(reader.readLine());
+            transicion.X2Puerta = Integer.parseInt(reader.readLine());
+            transicion.Y2Puerta = Integer.parseInt(reader.readLine());
+            transicion.X1Respawn = Integer.parseInt(reader.readLine());
+            transicion.Y1Respawn = Integer.parseInt(reader.readLine());
+            transicion.X2Respawn = Integer.parseInt(reader.readLine());
+            transicion.Y2Respawn = Integer.parseInt(reader.readLine());
+            Transicion trans1 = new Transicion(transicion.escenario2, transicion.X2Respawn, transicion.Y2Respawn);
+            Puerta porta1 = (Puerta) this.escenas.get(transicion.escenario1).getDatos()[transicion.Y1Puerta][transicion.X1Puerta];
+            porta1.setTeleport(trans1);
+            Transicion trans2 = new Transicion(transicion.escenario1, transicion.X1Respawn, transicion.Y1Respawn);
+            Puerta porta2 = (Puerta) this.escenas.get(transicion.escenario2).getDatos()[transicion.Y2Puerta][transicion.X2Puerta];
+            porta2.setTeleport(trans2);
+        }
+        //Fer mapa 1
+        List<Escena> mapa1 = new ArrayList<Escena>();
+        mapa1.add(pantalles.get(0));
+        mapa1.add(pantalles.get(1));
+        mapa1.add(pantalles.get(2));
+        mapa1.add(pantalles.get(3));
+        Mapa map = new Mapa(escenes);
         this.mapes.add(map);//Fer aixo per cada mapa
         return this.mapes;
     }
@@ -288,7 +323,6 @@ public class Mundo {
     public Partida crearPartida(Partida partida)
     {
         log.info("Detalls de la partida: "+partida.jugador + Integer.toString(partida.mapSelection));
-        //FALTA CARREGAR EL MAPA, AMB LES ESCENES  I TRANSICIONS, ELS COFRES NO.
         if(partida.mapSelection==0)
             this.mapes.get(0);
         else if(partida.mapSelection==1)

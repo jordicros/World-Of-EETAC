@@ -9,7 +9,7 @@ public class Puerta extends Celda {
         return "G";
     }
 
-    private Transicion teleport = new Transicion();
+    private Transicion teleport;
     public void setTeleport(Transicion door){
         this.teleport = door;
     }

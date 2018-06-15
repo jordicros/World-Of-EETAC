@@ -3,11 +3,11 @@
 Escenari principal Mazmorra
 P P P P P P P P P P P P P P P 
 P P P P P P P P P P P P P P P
-0 0 D 0 0 0 P 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 P 0 0 0 0 0 0 0 D 
-0 0 0 0 0 0 P 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 P 0 0 0 0 0 0 0 0
-P P P P 0 0 P 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+P 0 D 0 0 0 P 0 0 0 0 0 0 0 P
+P 0 0 0 0 0 P 0 0 0 0 0 0 0 D
+P 0 0 0 0 0 P 0 0 0 0 0 0 0 P
+P 0 0 0 0 0 P 0 0 0 0 0 0 0 P
+P P P P 0 0 P 0 0 0 0 0 0 0 P
+P 0 0 0 0 0 0 0 0 0 0 0 0 0 P
+P 0 0 0 0 0 0 0 0 0 0 0 0 0 P
+P P P P P P P P P P P P P P P
