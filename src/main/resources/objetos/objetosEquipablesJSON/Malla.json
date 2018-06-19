@@ -1,1 +1,1 @@
-{"id":3,"nombre":"Malla","descripcion":"Protege la parte inferior de los zombies que no se levantan.","tipo":3,"parteCuerpo":3}
+{"type":"equipable","id":3,"nombre":"Malla","descripcion":"Protege la parte inferior de los zombies que no se levantan.","tipo":3,"parteCuerpo":3}

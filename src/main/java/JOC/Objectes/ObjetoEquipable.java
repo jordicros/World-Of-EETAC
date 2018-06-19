@@ -7,5 +7,9 @@ public class ObjetoEquipable extends Objeto {
         super(identificador,nombre,descripcion,tipo);
     }
     public ObjetoEquipable(){}
+    @Override
+    public int getTipo() {
+        return 1;
+    }
 
 }

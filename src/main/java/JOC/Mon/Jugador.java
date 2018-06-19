@@ -1,6 +1,9 @@
 package JOC.Mon;
 
 import JOC.Objectes.Objeto;
+import JOC.Objectes.ObjetoConsumible;
+import JOC.Objectes.ObjetoEquipable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +14,10 @@ public class Jugador {
     private int attack;
     private int defense;
     private int magicAttack;
-    private List<Objeto> inventario;
+    @JsonIgnore
+    public List<Objeto> inventario;
     public Jugador(String nick, int profession){
+
         this.nickname = nick;
         this.profession = profession;
         this.inventario = new ArrayList<Objeto>(); //Potser es mes rentable un altre tipus d'estructura de Dades.

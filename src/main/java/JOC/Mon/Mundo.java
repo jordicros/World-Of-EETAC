@@ -35,8 +35,8 @@ public class Mundo {
         objetos = new ArrayList<Objeto>();
         cargarEscenasJson("escenarisJ.txt");
         cargarObjetosJson("objetosJ.txt");
-        //cargarEscenasTxt("escenaris.txt"); //Per editar mapes
-       // cargarObjetosTxt("objetos.txt");
+        cargarEscenasTxt("escenaris.txt"); //Per editar mapes
+       //cargarObjetosTxt("objetos.txt");
         //guardarObjetosJSON();
         cargarUsuarios();
         ferMapes(this.escenas);
@@ -411,7 +411,6 @@ public class Mundo {
             int rand = r.nextInt(pisablesX.size());
             List<Objeto> cofreContent = new ArrayList<Objeto>();
             cofreContent.add(objetos.get(r.nextInt(objetos.size())));
-            cofreContent.add(objetos.get(r.nextInt(objetos.size())));
             mapWithNoChest.pantalles.get(j).getDatos()[pisablesX.get(rand)][pisablesY.get(rand)] =(Cofre) new Cofre(cofreContent);
 
         }
@@ -428,6 +427,7 @@ public class Mundo {
              partida.map = this.mapes.get(0);
         else if(partida.mapSelection==1)
            partida.map = this.mapes.get(1);
+        partida.player = new Jugador(partida.jugador,partida.proffSelection);
         this.partides.add(partida);
         partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
         return partida;

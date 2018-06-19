@@ -1,1 +1,1 @@
-{"id":0,"nombre":"Pocion","descripcion":"Restaura 30 puntos de salud","tipo":0}
+{"type":"consumible","id":0,"nombre":"Pocion","descripcion":"Restaura 30 puntos de salud","tipo":0}

@@ -1,1 +1,1 @@
-{"id":4,"nombre":"Botas","descripcion":"Agilizan el movimiento","tipo":4,"parteCuerpo":4}
+{"type":"equipable","id":4,"nombre":"Botas","descripcion":"Agilizan el movimiento","tipo":4,"parteCuerpo":4}
