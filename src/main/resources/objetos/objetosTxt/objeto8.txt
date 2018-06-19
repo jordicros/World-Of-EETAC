@@ -1,4 +1,4 @@
-ArcoDeFlechas
+arcodeflechas
 Aumenta la cadencia en los arqueros
 7
 20

@@ -1,4 +1,4 @@
-Armadura
+armadura
 Aumenta en 50 puntos la defensa del jugador
 2
 50

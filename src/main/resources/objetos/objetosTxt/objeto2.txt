@@ -1,4 +1,4 @@
-Casco
+casco
 Aporta puntos de defensa al jugador
 1
 35

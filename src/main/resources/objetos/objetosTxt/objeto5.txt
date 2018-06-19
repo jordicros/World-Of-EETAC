@@ -1,4 +1,4 @@
-Botas
+botas
 Agilizan el movimiento
 4
 15
