@@ -1,0 +1,4 @@
+EspadaLarga
+Aumenta el alcance cuerpo a cuerpo en los guerreros
+5
+25

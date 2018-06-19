@@ -1,0 +1,4 @@
+Malla
+Protege la parte inferior de los zombies que no se levantan.
+3
+15

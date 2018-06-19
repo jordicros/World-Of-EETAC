@@ -1,0 +1,9 @@
+8
+Pocion.json
+Armadura.json
+Botas.json
+Malla.json
+Casco.json
+BastonMagico.json
+ArcoDeFlechas.json
+EspadaLarga.json

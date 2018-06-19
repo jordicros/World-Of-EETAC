@@ -5,6 +5,8 @@ import JOC.DAO.Factory;
 import JOC.DAO.Main;
 import JOC.DAO.Session;
 import JOC.Objectes.Objeto;
+import JOC.Objectes.ObjetoConsumible;
+import JOC.Objectes.ObjetoEquipable;
 import JOC.mains_tests.Dades;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
@@ -30,10 +32,66 @@ public class Mundo {
     public Mundo()  throws IOException,IllegalAccessException,InvocationTargetException,SQLException,InstantiationException,NoSuchMethodException{
         //S'hauria de carregar tota la base de dades amb usuaris, etc
         cargarObjetos();
+        objetos = new ArrayList<Objeto>();
         cargarEscenasJson("escenarisJ.txt");
+        cargarObjetosJson("objetosJ.txt");
         //cargarEscenasTxt("escenaris.txt"); //Per editar mapes
+        //cargarObjetosTxt("objetos.txt");
+        //guardarObjetosJSON();
         cargarUsuarios();
         ferMapes(this.escenas);
+    }
+    public int cargarObjetosJson(String nom) throws FileNotFoundException,IOException {
+        String ruta_abs = new File("").getAbsolutePath();
+        BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/objetos/objetosJson/"+nom));
+        int num = Integer.parseInt(reader.readLine());
+        String[] rutes= new String[num];
+        for(int i=0;i<num;i++) {
+            rutes[i]=reader.readLine();
+        }
+        reader.close();
+        for(int a=0;a<num;a++) {
+            ObjectMapper mapper = new ObjectMapper();
+            Objeto obj = mapper.readValue( new File(ruta_abs+"/src/main/resources/objetos/objetosJson/"+rutes[a]),Objeto.class);
+            objetos.add(obj);
+        }
+        return 0;
+    }
+    public int cargarObjetosTxt(String path) throws IOException
+    {
+        String ruta_abs = new File("").getAbsolutePath();
+        BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/objetos/objetosTxt/"+path));
+        int num = Integer.parseInt(reader.readLine());
+        String[] rutes= new String[num];
+        for(int i=0;i<num;i++) {
+            rutes[i]=reader.readLine();
+        }
+        reader.close();
+        for(int a=0;a<num;a++) {
+            Objeto obj= new Objeto();
+            reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/objetos/objetosTxt/"+rutes[a]));
+            obj.setId(a);
+            obj.setNombre(reader.readLine());
+            obj.setDescripcion(reader.readLine());
+            obj.setTipo(Integer.parseInt(reader.readLine()));
+            if(obj.getTipo()==0)
+            {
+                obj = new ObjetoConsumible(obj.getID(),obj.getNombre(),obj.getDescripcion(),obj.getTipo());
+            }
+            else
+                obj = new ObjetoEquipable(obj.getID(),obj.getNombre(),obj.getDescripcion(),obj.getTipo());
+            objetos.add(obj);
+        }
+        return 0;
+    }
+    public void guardarObjetosJSON() throws java.io.IOException {
+        for(int i=0;i<objetos.size();i++)
+        {
+            ObjectMapper mapper = new ObjectMapper();
+            String ruta_abs = new File("").getAbsolutePath();
+            String nom = objetos.get(i).getNombre();
+            mapper.writeValue(new File(ruta_abs+"/src/main/resources/objetos/objetosJson/"+objetos.get(i).getNombre()+".json"),objetos.get(i));
+        }
     }
     public void writeJSON(int id, String nomJSON) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
@@ -299,20 +357,29 @@ public class Mundo {
     {
         int alt,ample;
         int counter = 4;
+        List<Integer> pisablesX = new ArrayList<Integer>();
+        List<Integer> pisablesY = new ArrayList<Integer>();
+
         for(int j=0;j<mapWithNoChest.pantalles.size();j++) {
 
-            List<Celda> pisables = new ArrayList<Celda>();
+
             for (int i = 0; i < mapWithNoChest.pantalles.get(j).getAncho();i++) {
-                for(int x=0;i <mapWithNoChest.pantalles.get(j).getAlto();x++){
-                    if(mapWithNoChest.pantalles.get(j).getDatos()[x][i].getPisablePersonaje()==1)
-                        pisables.add(mapWithNoChest.pantalles.get(j).getDatos()[x][i]);
+
+                for(int x=0;x <mapWithNoChest.pantalles.get(j).getAlto();x++){
+                    if(mapWithNoChest.pantalles.get(j).getDatos()[x][i].getPisablePersonaje()==1) {
+                        pisablesX.add(x);
+                        pisablesY.add(i);
+                    }
                 }
             }
             Random r = new Random();
-            Celda cofre = pisables.get(r.nextInt(pisables.size()-0));
-            cofre = new Cofre();
-            ((Cofre) cofre).addObject(new Objeto());
-                   //Afegir material al cofre
+
+            int rand = r.nextInt(pisablesX.size());
+            List<Objeto> cofreContent = new ArrayList<Objeto>();
+            cofreContent.add(objetos.get(r.nextInt(objetos.size())));
+            cofreContent.add(objetos.get(r.nextInt(objetos.size())));
+            mapWithNoChest.pantalles.get(j).getDatos()[pisablesX.get(rand)][pisablesY.get(rand)] =(Cofre) new Cofre(cofreContent);
+
         }
         return mapWithNoChest;
 
@@ -322,13 +389,13 @@ public class Mundo {
     // Així successivament fins que es mori, que es guardarà la partida a la BBDD
     public Partida crearPartida(Partida partida)
     {
-        log.info("Detalls de la partida: "+partida.jugador + "     " + Integer.toString(partida.mapSelection));
+        //log.info("Detalls de la partida: "+partida.jugador + "     " + Integer.toString(partida.mapSelection));
         if(partida.mapSelection==0)
              partida.map = this.mapes.get(0);
         else if(partida.mapSelection==1)
            partida.map = this.mapes.get(1);
         this.partides.add(partida);
-        //partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
+        partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
         return partida;
     }
     public Partida gestionarPartida(Partida partida)

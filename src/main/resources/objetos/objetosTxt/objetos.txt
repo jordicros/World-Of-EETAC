@@ -1,0 +1,9 @@
+8
+objeto1.txt
+objeto2.txt
+objeto3.txt
+objeto4.txt
+objeto5.txt
+objeto6.txt
+objeto7.txt
+objeto8.txt
