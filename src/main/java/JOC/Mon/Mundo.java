@@ -36,14 +36,14 @@ public class Mundo {
         cargarEscenasJson("escenarisJ.txt");
         cargarObjetosJson("objetosJ.txt");
         //cargarEscenasTxt("escenaris.txt"); //Per editar mapes
-        //cargarObjetosTxt("objetos.txt");
+       // cargarObjetosTxt("objetos.txt");
         //guardarObjetosJSON();
         cargarUsuarios();
         ferMapes(this.escenas);
     }
     public int cargarObjetosJson(String nom) throws FileNotFoundException,IOException {
         String ruta_abs = new File("").getAbsolutePath();
-        BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/objetos/objetosJson/"+nom));
+        BufferedReader reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/objetos/objetosConsumiblesJson/"+nom));
         int num = Integer.parseInt(reader.readLine());
         String[] rutes= new String[num];
         for(int i=0;i<num;i++) {
@@ -52,9 +52,22 @@ public class Mundo {
         reader.close();
         for(int a=0;a<num;a++) {
             ObjectMapper mapper = new ObjectMapper();
-            Objeto obj = mapper.readValue( new File(ruta_abs+"/src/main/resources/objetos/objetosJson/"+rutes[a]),Objeto.class);
+            ObjetoConsumible obj = mapper.readValue( new File(ruta_abs+"/src/main/resources/objetos/objetosConsumiblesJson/"+rutes[a]),ObjetoConsumible.class);
             objetos.add(obj);
         }
+        reader = new BufferedReader(new FileReader(ruta_abs+"/src/main/resources/objetos/objetosEquipablesJson/"+nom));
+        num = Integer.parseInt(reader.readLine());
+        rutes= new String[num];
+        for(int i=0;i<num;i++) {
+            rutes[i]=reader.readLine();
+        }
+        reader.close();
+        for(int a=0;a<num;a++) {
+            ObjectMapper mapper = new ObjectMapper();
+            ObjetoEquipable obj = mapper.readValue( new File(ruta_abs+"/src/main/resources/objetos/objetosEquipablesJson/"+rutes[a]),ObjetoEquipable.class);
+            objetos.add(obj);
+        }
+
         return 0;
     }
     public int cargarObjetosTxt(String path) throws IOException
@@ -78,8 +91,19 @@ public class Mundo {
             {
                 obj = new ObjetoConsumible(obj.getID(),obj.getNombre(),obj.getDescripcion(),obj.getTipo());
             }
-            else
-                obj = new ObjetoEquipable(obj.getID(),obj.getNombre(),obj.getDescripcion(),obj.getTipo());
+            else {
+                obj = new ObjetoEquipable(obj.getID(), obj.getNombre(), obj.getDescripcion(), obj.getTipo());
+                if(obj.getID()==1) //CAP
+                    ((ObjetoEquipable) obj).parteCuerpo = 1;
+                else if(obj.getID()==2) //COS
+                    ((ObjetoEquipable) obj).parteCuerpo = 2;
+                else if(obj.getID()==3) //MALLA
+                    ((ObjetoEquipable) obj).parteCuerpo = 3;
+                else if(obj.getID()==4) //BOTAS
+                    ((ObjetoEquipable) obj).parteCuerpo = 4;
+                else if(obj.getID()==5||obj.getID()==6||obj.getID()==7) //ARMA
+                    ((ObjetoEquipable) obj).parteCuerpo = 5;
+            }
             objetos.add(obj);
         }
         return 0;
@@ -87,10 +111,20 @@ public class Mundo {
     public void guardarObjetosJSON() throws java.io.IOException {
         for(int i=0;i<objetos.size();i++)
         {
-            ObjectMapper mapper = new ObjectMapper();
-            String ruta_abs = new File("").getAbsolutePath();
-            String nom = objetos.get(i).getNombre();
-            mapper.writeValue(new File(ruta_abs+"/src/main/resources/objetos/objetosJson/"+objetos.get(i).getNombre()+".json"),objetos.get(i));
+            if(objetos.get(i).getTipo()==0) {
+                ObjectMapper mapper = new ObjectMapper();
+                String ruta_abs = new File("").getAbsolutePath();
+                String nom = objetos.get(i).getNombre();
+                mapper.writeValue(new File(ruta_abs + "/src/main/resources/objetos/objetosConsumiblesJson/" + objetos.get(i).getNombre() + ".json"), objetos.get(i));
+            }
+            else//Tota la resta son equipables
+            {
+                ObjectMapper mapper = new ObjectMapper();
+                String ruta_abs = new File("").getAbsolutePath();
+                String nom = objetos.get(i).getNombre();
+                mapper.writeValue(new File(ruta_abs + "/src/main/resources/objetos/objetosEquipablesJson/" + objetos.get(i).getNombre() + ".json"), objetos.get(i));
+
+            }
         }
     }
     public void writeJSON(int id, String nomJSON) throws IOException{

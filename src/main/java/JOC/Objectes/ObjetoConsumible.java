@@ -5,4 +5,5 @@ public class ObjetoConsumible extends Objeto {
     {
         super(identificador,nombre,descripcion,tipo);
     }
+    public ObjetoConsumible(){}
 }
