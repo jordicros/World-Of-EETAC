@@ -393,7 +393,7 @@ public class Mundo {
             for (int i = 0; i < mapaAmbCofresVells.pantalles.get(j).getAncho();i++) {
 
                 for(int x=0;x <mapaAmbCofresVells.pantalles.get(j).getAlto();x++){
-                    if(mapaAmbCofresVells.pantalles.get(j).getDatos()[x][i].getSimbolo().equals("C")) {
+                    if(mapaAmbCofresVells.pantalles.get(j).getDatos()[x][i].getSimbolo().equals("X")) {
                         mapaAmbCofresVells.pantalles.get(j).getDatos()[x][i] = new Hierba();
                     }
                 }

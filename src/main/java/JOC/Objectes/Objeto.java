@@ -20,7 +20,7 @@ public class Objeto {
     private String nombre;
     private String descripcion;
     private int tipo;
-
+    private int statUpgrader;
     public int getStatUpgrader() {
         return statUpgrader;
     }
@@ -29,7 +29,7 @@ public class Objeto {
         this.statUpgrader = statUpgrader;
     }
 
-    private int statUpgrader;
+
 
     public int getID(){
         return this.id;
