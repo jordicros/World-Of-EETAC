@@ -14,10 +14,8 @@ import org.apache.log4j.Logger;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class Mundo {
@@ -386,11 +384,28 @@ public class Mundo {
         this.mapes.add(map);//Fer aixo per cada mapa
         return this.mapes;
     }
+    public Mapa referMapes(Mapa mapaAmbCofresVells)
+    {
+        for(int j=0;j<mapaAmbCofresVells.pantalles.size();j++) {
 
+
+            for (int i = 0; i < mapaAmbCofresVells.pantalles.get(j).getAncho();i++) {
+
+                for(int x=0;x <mapaAmbCofresVells.pantalles.get(j).getAlto();x++){
+                    if(mapaAmbCofresVells.pantalles.get(j).getDatos()[x][i].getSimbolo().equals("C")) {
+                        mapaAmbCofresVells.pantalles.get(j).getDatos()[x][i] = new Hierba();
+                    }
+                }
+            }
+
+        }
+        return mapaAmbCofresVells;
+    }
     public Mapa chestGenerator(Mapa mapWithNoChest)
     {
         int alt,ample;
         int counter = 4;
+        mapWithNoChest = referMapes(mapWithNoChest);
         List<Integer> pisablesX = new ArrayList<Integer>();
         List<Integer> pisablesY = new ArrayList<Integer>();
 
@@ -428,6 +443,8 @@ public class Mundo {
         else if(partida.mapSelection==1)
            partida.map = this.mapes.get(1);
         partida.player = new Jugador(partida.jugador,partida.proffSelection);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        partida.nom = partida.jugador + timeStamp;
         this.partides.add(partida);
         partida = gestionarPartida(this.partides.get(this.partides.indexOf(partida)));
         return partida;
