@@ -1,1 +1,1 @@
-{"type":"equipable","id":5,"nombre":"espadalarga","descripcion":"Aumenta el alcance cuerpo a cuerpo en los guerreros","tipo":1,"parteCuerpo":5}
+{"type":"equipable","id":5,"nombre":"espadalarga","descripcion":"Aumenta el ataque cuerpo a cuerpo en los guerreros","tipo":1,"statUpgrader":25,"parteCuerpo":5}

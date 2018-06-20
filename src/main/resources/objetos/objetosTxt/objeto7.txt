@@ -1,4 +1,4 @@
 bastonmagico
-Sirve para aumentar la cadencia de los magos.
+Sirve para aumentar el danyo de los magos.
 6
 20

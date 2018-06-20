@@ -85,12 +85,13 @@ public class Mundo {
             obj.setNombre(reader.readLine());
             obj.setDescripcion(reader.readLine());
             obj.setTipo(Integer.parseInt(reader.readLine()));
+            obj.setStatUpgrader(Integer.parseInt(reader.readLine()));
             if(obj.getTipo()==0)
             {
-                obj = new ObjetoConsumible(obj.getID(),obj.getNombre(),obj.getDescripcion(),obj.getTipo());
+                obj = new ObjetoConsumible(obj.getID(),obj.getNombre(),obj.getDescripcion(),obj.getTipo(),obj.getStatUpgrader());
             }
             else {
-                obj = new ObjetoEquipable(obj.getID(), obj.getNombre(), obj.getDescripcion(), obj.getTipo());
+                obj = new ObjetoEquipable(obj.getID(), obj.getNombre(), obj.getDescripcion(), obj.getTipo(),obj.getStatUpgrader());
                 if(obj.getID()==1) //CAP
                     ((ObjetoEquipable) obj).parteCuerpo = 1;
                 else if(obj.getID()==2) //COS
@@ -465,6 +466,7 @@ public class Mundo {
         //Buscar partida
         int i = this.partides.indexOf(partida);
         partida = this.partides.get(i);
+        this.partides.remove(i);
         //guardar db
 
         return partida;

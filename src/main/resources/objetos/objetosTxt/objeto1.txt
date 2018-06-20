@@ -1,3 +1,4 @@
 pocion
 Restaura 30 puntos de salud
 0
+30

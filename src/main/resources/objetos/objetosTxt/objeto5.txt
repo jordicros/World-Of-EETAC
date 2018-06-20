@@ -1,4 +1,4 @@
 botas
-Agilizan el movimiento
+Aumenta la defensa en 15 puntos
 4
 15

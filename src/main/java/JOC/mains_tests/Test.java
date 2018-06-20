@@ -54,7 +54,7 @@ public class Test {
     @org.junit.Test
     public void testAñadirConsultarObjetos(){
         Usuario user = mundo.consultarUsuario("Marc");
-        ObjetoEquipable objeto= new ObjetoEquipable(1,"Salud","Pocion",2);
+        ObjetoEquipable objeto= new ObjetoEquipable(1,"Salud","Pocion",2,30);
         //mundo.añadirObjetoAUsuario(user,objeto);
         //List<Objeto> objetos=mundo.consultarObjetosDeUsuario(user);
        // assertEquals(objeto,objetos.get(0));
@@ -63,7 +63,7 @@ public class Test {
     @org.junit.Test
     public void testConsultarObjeto(){
         Usuario user = mundo.consultarUsuario("Marc");
-        ObjetoEquipable objeto= new ObjetoEquipable(1,"Salud","Pocion",2);
+        ObjetoEquipable objeto= new ObjetoEquipable(1,"Salud","Pocion",2,30);
         //mundo.añadirObjetoAUsuario(user,objeto);
         Objeto obj=mundo.consultarObjetoDeUsuario(user,"Salud");
         assertEquals(objeto,obj);

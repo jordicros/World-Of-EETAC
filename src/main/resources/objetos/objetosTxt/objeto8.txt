@@ -1,4 +1,4 @@
 arcodeflechas
-Aumenta la cadencia en los arqueros
+Aumenta el ataque en los arqueros
 7
 20

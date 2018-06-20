@@ -1,1 +1,1 @@
-{"type":"equipable","id":6,"nombre":"bastonmagico","descripcion":"Sirve para aumentar la cadencia de los magos.","tipo":1,"parteCuerpo":5}
+{"type":"equipable","id":6,"nombre":"bastonmagico","descripcion":"Sirve para aumentar el da�o de los magos.","tipo":1,"statUpgrader":20,"parteCuerpo":5}

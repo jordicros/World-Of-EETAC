@@ -1,1 +1,1 @@
-{"type":"equipable","id":2,"nombre":"armadura","descripcion":"Aumenta en 50 puntos la defensa del jugador","tipo":1,"parteCuerpo":2}
+{"type":"equipable","id":2,"nombre":"armadura","descripcion":"Aumenta en 30 puntos la defensa del jugador","tipo":1,"statUpgrader":30,"parteCuerpo":2}

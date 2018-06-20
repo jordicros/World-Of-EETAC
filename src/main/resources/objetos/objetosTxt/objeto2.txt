@@ -1,4 +1,4 @@
 casco
-Aporta puntos de defensa al jugador
+Aporta 10 puntos de defensa al jugador
 1
-35
+10

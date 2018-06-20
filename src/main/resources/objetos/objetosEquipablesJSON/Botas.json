@@ -1,1 +1,1 @@
-{"type":"equipable","id":4,"nombre":"botas","descripcion":"Agilizan el movimiento","tipo":1,"parteCuerpo":4}
+{"type":"equipable","id":4,"nombre":"botas","descripcion":"Aumenta la defensa en 15 puntos","tipo":1,"statUpgrader":15,"parteCuerpo":4}
