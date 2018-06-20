@@ -17,7 +17,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 
 public class ProgramaPrincipal {
-    public static final String BASE_URI = "http://localhost:8080/myapp/";
+    public static final String BASE_URI = "http://192.168.43.54:8080/myapp/";
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
         // in edu.upc.dsa package

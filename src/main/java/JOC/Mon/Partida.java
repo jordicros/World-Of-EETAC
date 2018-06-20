@@ -1,5 +1,7 @@
 package JOC.Mon;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 //Server s'encarrega de gestionar l'inici i el final de la partida.
@@ -7,6 +9,7 @@ public class Partida {
     public Mapa map;
     public int mapSelection;
     public String jugador;
+    @JsonIgnore
     public Jugador player;
     public int proffSelection;
     public String nom;
