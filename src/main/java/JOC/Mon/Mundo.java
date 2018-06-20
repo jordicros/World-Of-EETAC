@@ -453,13 +453,25 @@ public class Mundo {
     public Partida gestionarPartida(Partida partida)
     {
         //Buscar partida
-        int i = this.partides.indexOf(partida);
-        partida = this.partides.get(i);
-        chestGenerator(partida.map);
-        partida.ronda++;
-        partida.enemics=partida.ronda*15 +20;
-
-        return partida;
+        int trobat=0,i=0;
+        while(i<this.partides.size()&&trobat==0)
+        {
+            if(this.partides.get(i).jugador.equals(partida.jugador))
+            {
+                trobat = 1;
+            }
+            else
+                i++;
+        }
+        if(trobat==1) {
+            partida = this.partides.get(i);
+            chestGenerator(partida.map);
+            partida.ronda++;
+            partida.enemics = partida.ronda * 15 + 20;
+            return partida;
+        }
+        else
+            return partida;
     }
     public Partida guardarPartida(Partida partida)
     {
